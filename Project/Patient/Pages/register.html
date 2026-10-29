@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../Design/Style.css">
+        <link rel="stylesheet" href="patient.css">
+        <script src="patient.js" defer></script>
+        <title>New Patient Registration | MediConnect</title>
+    </head>
+    <body>
+        <div class="navbar">
+            <div class="header">
+                <div class="logo" aria-hidden="true">+</div>
+                <h1>MediConnect</h1>
+            </div>
+            <div class="topnav">
+                <a href="../commonui/index.html">Home</a>
+                <a href="../commonui/index.html#services">Services</a>
+                <a href="../commonui/index.html#doctors">Doctors</a>
+                <a href="../commonui/index.html#contact">Contact</a>
+                <a href="register.html">Patient Registration</a>
+                <a href="../commonui/login.html" class="login-btn">Sign In</a>
+            </div>
+        </div>
+
+        <div class="container patient-container">
+            <div class="portal-layout">
+                <div class="side-menu">
+                    <h2>Patient Portal</h2>
+                    <p id="menu-patient">Rahim Ahmed</p>
+                    <a href="register.html" class="active">Registration</a>
+                    <a href="dashboard.html">Dashboard</a>
+                    <a href="profile.html">My Profile</a>
+                    <a href="bookAppointment.html">Book Appointment</a>
+                    <a href="myAppointments.html">My Appointments</a>
+                    <a href="medicalRecords.html">Medical Records</a>
+                    <a href="prescriptions.html">Prescriptions</a>
+                    <a href="bills.html">Bills & Payments</a>
+                    <a href="../commonui/index.html">Back to Home</a>
+                    <a href="../commonui/login.html">Logout / Login</a>
+                </div>
+
+                <main class="page-content">
+                    <div class="page-heading">
+                        <div>
+                            <p class="page-type">PATIENT PORTAL</p>
+                            <h2>New Patient Registration</h2>
+                        </div>
+                    </div>
+
+                    <div class="content-columns">
+                        <div class="main-panel">
+                            <form id="registration-form">
+                                <fieldset>
+                                    <legend>Personal Information</legend>
+                                    <div class="form-grid">
+                                        <div>
+                                            <label for="reg-name">Full Name *</label>
+                                            <input type="text" id="reg-name" name="name" placeholder="Enter your full name" required>
+                                        </div>
+                                        <div>
+                                            <label for="reg-dob">Date of Birth *</label>
+                                            <input type="date" id="reg-dob" name="dob" required>
+                                        </div>
+                                        <div>
+                                            <label for="reg-gender">Gender *</label>
+                                            <select id="reg-gender" name="gender" required>
+                                                <option value="">Select gender</option>
+                                                <option>Male</option>
+                                                <option>Female</option>
+                                            </select>
+                                        </div>
+                                        <div>
+                                            <label for="reg-blood">Blood Group *</label>
+                                            <select id="reg-blood" name="bloodGroup" required>
+                                                <option value="">Select blood group</option>
+                                                <option>A+</option>
+                                                <option>A-</option>
+                                                <option>B+</option>
+                                                <option>B-</option>
+                                                <option>AB+</option>
+                                                <option>AB-</option>
+                                                <option>O+</option>
+                                                <option>O-</option>
+                                            </select>
+                                        </div>
+                                        <div>
+                                            <label for="reg-email">Email Address *</label>
+                                            <input type="email" id="reg-email" name="email" placeholder="patient@example.com" required>
+                                        </div>
+                                        <div>
+                                            <label for="reg-phone">Mobile Number *</label>
+                                            <input type="tel" id="reg-phone" name="phone" placeholder="01XXXXXXXXX" required>
+                                        </div>
+                                        <div class="wide">
+                                            <label for="reg-address">Address *</label>
+                                            <input type="text" id="reg-address" name="address" placeholder="Enter your address" required>
+                                        </div>
+                                        <div class="wide">
+                                            <label for="reg-emergency">Emergency Contact</label>
+                                            <input type="tel" id="reg-emergency" name="emergency" placeholder="01XXXXXXXXX">
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <fieldset>
+                                    <legend>Account Information</legend>
+                                    <div class="form-grid">
+                                        <div>
+                                            <label for="reg-password">Password *</label>
+                                            <input type="password" id="reg-password" name="password" minlength="6" required>
+                                        </div>
+                                        <div>
+                                            <label for="reg-confirm">Confirm Password *</label>
+                                            <input type="password" id="reg-confirm" name="confirm" minlength="6" required>
+                                        </div>
+                                    </div>
+                                    <p><label class="check"><input type="checkbox" id="reg-consent" required> I agree to use fictional details for this classroom demonstration.</label></p>
+                                    <button type="submit" class="button">Register</button>
+                                    <button type="reset" class="button button-light">Reset</button>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+                </main>
+            </div>
+
+            <div class="footer">
+                <p>&copy; 2026 MediConnect | Web Technologies Group Project</p>
+                <p class="note">Classroom frontend demonstration using fictional data. No real login or payments.</p>
+                <p><a href="../commonui/index.html">Home</a> | <a href="../commonui/login.html">Login</a></p>
+            </div>
+        </div>
+    </body>
+</html>
