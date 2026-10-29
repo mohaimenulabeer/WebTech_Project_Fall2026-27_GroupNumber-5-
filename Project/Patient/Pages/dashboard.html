@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Use the same shared design file as commonui when it exists. -->
+        <link rel="stylesheet" href="../Design/Style.css">
+        <link rel="stylesheet" href="patient.css">
+        <script src="patient.js" defer></script>
+        <title>Patient Dashboard | MediConnect</title>
+    </head>
+    <body>
+        <div class="navbar">
+            <div class="header">
+                <div class="logo" aria-hidden="true">+</div>
+                <h1>MediConnect</h1>
+            </div>
+            <div class="topnav">
+                <a href="../commonui/index.html">Home</a>
+                <a href="../commonui/index.html#services">Services</a>
+                <a href="../commonui/index.html#doctors">Doctors</a>
+                <a href="../commonui/index.html#contact">Contact</a>
+                <a href="register.html">Patient Registration</a>
+                <a href="../commonui/login.html" class="login-btn">Sign In</a>
+            </div>
+        </div>
+
+        <div class="container patient-container">
+            <div class="portal-layout">
+                <div class="side-menu">
+                    <h2>Patient Portal</h2>
+                    <p id="menu-patient">Rahim Ahmed</p>
+                    <a href="register.html">Registration</a>
+                    <a href="dashboard.html" class="active">Dashboard</a>
+                    <a href="profile.html">My Profile</a>
+                    <a href="book-appointment.html">Book Appointment</a>
+                    <a href="my-appointments.html">My Appointments</a>
+                    <a href="medical-records.html">Medical Records</a>
+                    <a href="prescriptions.html">Prescriptions</a>
+                    <a href="bills.html">Bills & Payments</a>
+                    <a href="../commonui/index.html">Back to Home</a>
+                    <a href="../commonui/login.html">Logout / Login</a>
+                </div>
+
+                <main class="page-content">
+                    <div class="page-heading">
+                        <div>
+                            <p class="page-type">PATIENT PORTAL</p>
+                            <h2>Patient Dashboard</h2>
+                            <p class="note">View appointments, treatment history, prescriptions, and billing information.</p>
+                        </div>
+                    </div>
+
+                    <div class="welcome patient-welcome">
+                        <div>
+                            <h3>Welcome, <span id="welcome-name">Rahim Ahmed</span>!</h3>
+                            <p>Patient ID: <strong id="dashboard-patient-id">P0001</strong></p>
+                            <p>Manage your appointments and medical information here.</p>
+                            <a href="book-appointment.html" class="button">+ Book Appointment</a>
+                        </div>
+                        <div class="welcome-box">
+                            <h3>What you can do</h3>
+                            <ul><li>Book new appointments</li><li>Track visit status</li><li>Check prescriptions and bills</li></ul>
+                        </div>
+                    </div>
+                    <div class="cards dashboard-cards">
+                        <fieldset class="stat"><legend>Upcoming Visits</legend><h3 id="stat-upcoming">0</h3><p>Scheduled appointments</p></fieldset>
+                        <fieldset class="stat"><legend>Completed Visits</legend><h3 id="stat-completed">0</h3><p>Previous consultations</p></fieldset>
+                        <fieldset class="stat"><legend>Prescriptions</legend><h3 id="stat-prescriptions">0</h3><p>Prescription history</p></fieldset>
+                        <fieldset class="stat"><legend>Outstanding Bills</legend><h3 id="stat-due">BDT 0</h3><p>Unpaid demo balance</p></fieldset>
+                    </div>
+                    <div class="content-columns dashboard-columns">
+                        <div class="main-panel">
+                            <fieldset>
+                                <legend>Upcoming Appointments</legend>
+                                <div class="table-scroll">
+                                    <table>
+                                        <thead><tr><th>Appointment ID</th><th>Doctor</th><th>Date</th><th>Time</th><th>Status</th></tr></thead>
+                                        <tbody id="dashboard-appointments"></tbody>
+                                    </table>
+                                </div>
+                                <p id="dashboard-empty" class="note" hidden>No upcoming appointments found.</p>
+                                <p><a href="my-appointments.html" class="button button-light">View All Appointments</a></p>
+                            </fieldset>
+                        </div>
+                        <div class="info-panel">
+                            <fieldset>
+                                <legend>Quick Actions</legend>
+                                <div class="quick-links">
+                                    <a href="book-appointment.html">Book Appointment</a>
+                                    <a href="my-appointments.html">My Appointments</a>
+                                    <a href="medical-records.html">Medical Records</a>
+                                    <a href="bills.html">Bills & Payments</a>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                </main>
+            </div>
+
+            <div class="footer">
+                <p>&copy; 2026 MediConnect | Web Technologies Group Project</p>
+                <p><a href="../commonui/index.html">Home</a> | <a href="../commonui/login.html">Login</a></p>
+            </div>
+        </div>
+    </body>
+</html>

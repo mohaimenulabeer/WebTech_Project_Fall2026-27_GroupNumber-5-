@@ -1,0 +1,128 @@
+
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../Design/Style.css">
+    <script src="../JS/Script.js" defer></script>
+    <title>Login | MediConnect</title>
+</head>
+
+<body>
+
+    <!-- Login Header -->
+    <div class="navbar">
+        <div class="header">
+            <div class="logo" aria-hidden= "true">+</div>
+            <h1>MediConnect</h1>
+        </div>
+        <a href="index.html" class="login-back">
+             &larr; Back to Home
+        </a>
+    </div>
+
+    <!-- Login Content -->
+    <div class="container login-container">
+
+        <main>
+
+            <section class="login-introduction">
+                <h2>Welcome Back</h2>
+                <p>Choose your user role to open the corresponding clinic dashboard.</p>
+            </section>
+
+            <form id="LoginForm" onsubmit="return collect_data()" onreset="clear_errors()" novalidate>
+
+                <fieldset>
+                    <legend>Account Information</legend>
+
+                    <table class="form-table">
+
+                        <tr>
+                            <td>
+                                <label for="UserID">Email / User ID:</label>
+                            </td>
+                            <td>
+                                <input type="text"
+                                    id="UserID"
+                                    name="UserID"
+                                    placeholder="Enter your email or ID"
+                                    autocomplete="username"
+                                    required>
+
+                                <p class="error" id="UserIDError" aria-live="polite"></p>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <label for="Password">Password:</label>
+                            </td>
+                            <td>
+                                <input type="password"
+                                    id="Password"
+                                    name="Password"
+                                    placeholder="Enter your password"
+                                    autocomplete="current-password"
+                                    required>
+
+                                <p class="error" id="PasswordError" aria-live="polite"></p>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <label for="Role">User Role:</label>
+                            </td>
+                            <td>
+                                <select id="Role" name="Role" required>
+                                    <option value="">Select a Role</option>
+                                    <option value="patient">Patient</option>
+                                    <option value="doctor">Doctor</option>
+                                    <option value="receptionist">Receptionist</option>
+                                    <option value="admin">Admin</option>
+                                </select>
+
+                                <p class="error" id="RoleError" aria-live="polite"></p>
+                            </td>
+                        </tr>
+
+                    </table>
+                </fieldset>
+
+                <div class="form-buttons">
+                    <input type="submit" id="submit" value="Sign In (Demo)">
+                    <input type="reset" id="reset" value="Reset">
+                </div>
+
+            </form>
+
+            <div class="login-help">
+                <p>
+                    <strong>New Patient?</strong>
+                    <a href="../patient/register.html">
+                        Create a patient account (demo)
+                    </a>
+                </p>
+
+                <p class="note">
+                    Demo only: This page checks form fields and opens
+                    the selected dashboard. It does not verify
+                    credentials or create a secure login session.
+                    Do not enter your real password.
+                </p>
+            </div>
+
+        </main>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>&copy; 2026 MediConnect | Web Technologies Group Project</p>
+            <p><a href="index.html">Back to Home</a></p>
+        </div>
+
+    </div>
+
+</body>
+</html>
