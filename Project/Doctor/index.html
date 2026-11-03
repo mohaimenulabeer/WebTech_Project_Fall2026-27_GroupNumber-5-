@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Doctor Portal Carewell Clinic</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&display=swap"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <div class="app">
+      <!-- Left navigation -->
+      <aside class="side" id="side">
+        <div class="brand">
+          <span class="logo">
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+            >
+              <path d="M12 5v14M5 12h14" />
+            </svg>
+          </span>
+          Carewell Clinic
+        </div>
+        <nav id="nav" aria-label="Main">
+          <button data-v="dashboard" class="on">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <rect x="3" y="3" width="7" height="9" rx="1" />
+              <rect x="14" y="3" width="7" height="5" rx="1" />
+              <rect x="14" y="12" width="7" height="9" rx="1" />
+              <rect x="3" y="16" width="7" height="5" rx="1" />
+            </svg>
+            Dashboard
+          </button>
+          <button data-v="patients">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+              <circle cx="9" cy="7" r="4" />
+              <path d="M22 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8" />
+            </svg>
+            My patients
+          </button>
+          <button data-v="availability">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <rect x="3" y="4" width="18" height="18" rx="2" />
+              <path d="M16 2v4M8 2v4M3 10h18" />
+            </svg>
+            Availability
+          </button>
+          <button data-v="profile">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <circle cx="12" cy="8" r="4" />
+              <path d="M4 21a8 8 0 0 1 16 0" />
+            </svg>
+            My profile
+          </button>
+        </nav>
+        <div class="help">
+          Need to change a shift or report a problem? Contact the front desk on
+          ext. 104.
+        </div>
+      </aside>
+
+      <div class="main">
+        <!-- Top bar with profile -->
+        <header class="top">
+          <button class="icon-btn menu-btn" id="menu" aria-label="Open menu">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+            >
+              <path d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+          <label class="search">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+            >
+              <circle cx="11" cy="11" r="7" />
+              <path d="m20 20-3.5-3.5" />
+            </svg>
+            <input
+              id="gsearch"
+              type="search"
+              placeholder="Search patients"
+              aria-label="Search patients"
+            />
+          </label>
+          <div class="spacer"></div>
+          <button class="icon-btn" aria-label="Notifications" id="bell">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path
+                d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9M13.7 21a2 2 0 0 1-3.4 0"
+              />
+            </svg>
+            <span class="dot"></span>
+          </button>
+          <button class="me" data-v="profile" aria-label="Open my profile">
+            <span class="av">SR</span>
+            <div><b>Dr. Sara Rahman</b><small>Cardiologist</small></div>
+          </button>
+        </header>
+
+        <main class="page">
+          <!-- Dashboard -->
+          <section class="view on" id="dashboard">
+            <h1>Good morning, Dr. Rahman</h1>
+            <p class="sub" id="today"></p>
+            <div class="grid stats">
+              <div class="card stat">
+                <span>Appointments today</span><b>7</b>
+              </div>
+              <div class="card stat">
+                <span>Patients assigned</span><b id="cnt">0</b>
+              </div>
+              <div class="card stat"><span>Waiting now</span><b>2</b></div>
+              <div class="card stat"><span>Pending reports</span><b>3</b></div>
+            </div>
+            <div class="grid two">
+              <div class="card">
+                <div class="card-h">
+                  <h2>Today’s schedule</h2>
+                  <button class="btn" data-v="availability">
+                    Edit availability
+                  </button>
+                </div>
+                <ul class="sched" id="sched"></ul>
+              </div>
+              <div class="card">
+                <div class="card-h">
+                  <h2>Recently assigned</h2>
+                </div>
+                <ul class="sched" id="recent"></ul>
+              </div>
+            </div>
+          </section>
+
+          <!-- Patients -->
+          <section class="view" id="patients">
+            <h1>My patients</h1>
+            <p class="sub">Patients assigned to you by the front desk.</p>
+            <div class="card">
+              <div class="tools">
+                <input
+                  id="q"
+                  type="search"
+                  placeholder="Search by name or condition"
+                  aria-label="Search by name or condition"
+                />
+                <select id="f" aria-label="Filter by status">
+                  <option value="">All statuses</option>
+                  <option>Stable</option>
+                  <option>Follow-up</option>
+                  <option>Critical</option>
+                </select>
+              </div>
+              <div class="wrap">
+                <table class="tbl">
+                  <thead>
+                    <tr>
+                      <th>Patient</th>
+                      <th>Condition</th>
+                      <th>Last visit</th>
+                      <th>Next visit</th>
+                      <th>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody id="pbody"></tbody>
+                </table>
+              </div>
+              <div class="empty" id="none" hidden>
+                No patients match your search. Try a different name or clear the
+                filter.
+              </div>
+            </div>
+          </section>
+
+          <!-- Availability -->
+          <section class="view" id="availability">
+            <h1>Availability</h1>
+            <p class="sub">
+              Choose the days and hours patients can book with you.
+            </p>
+            <div class="grid two">
+              <div class="card">
+                <div class="card-h">
+                  <h2>Weekly hours</h2>
+                  <button class="btn pri" id="save">Save changes</button>
+                </div>
+                <div class="days" id="days"></div>
+              </div>
+              <div class="card">
+                <div class="card-h">
+                  <h2>Booking settings</h2>
+                </div>
+                <div class="card-b">
+                  <div class="row">
+                    <div>
+                      Accept new patients<small
+                        >Show you in the booking list</small
+                      >
+                    </div>
+                    <label class="sw">
+                      <input
+                        type="checkbox"
+                        checked
+                        aria-label="Accept new patients"
+                      />
+                      <i></i>
+                    </label>
+                  </div>
+                  <div class="row">
+                    <div>
+                      Allow video visits<small
+                        >Offer online consultations</small
+                      >
+                    </div>
+                    <label class="sw">
+                      <input type="checkbox" aria-label="Allow video visits" />
+                      <i></i>
+                    </label>
+                  </div>
+                  <div class="row">
+                    <div>
+                      Visit length<small>Default slot per patient</small>
+                    </div>
+                    <select aria-label="Visit length" class="btn">
+                      <option>15 min</option>
+                      <option selected>30 min</option>
+                      <option>45 min</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Profile -->
+          <section class="view" id="profile">
+            <h1>My profile</h1>
+            <p class="sub">How you appear to patients and staff.</p>
+            <div class="prof">
+              <div class="card card-b">
+                <span class="av big">SR</span>
+                <h2>Dr. Sara Rahman</h2>
+                <p class="role">Consultant Cardiologist</p>
+                <span class="pill p-ok">Available today</span>
+                <p class="room">Room 304, Cardiology Wing<br />Ext. 212</p>
+              </div>
+              <div class="card">
+                <div class="card-h">
+                  <h2>Details</h2>
+                  <button class="btn" id="edit">Edit profile</button>
+                </div>
+                <div class="card-b">
+                  <dl class="kv">
+                    <dt>Department</dt>
+                    <dd>Cardiology</dd>
+                    <dt>Registration no.</dt>
+                    <dd>BMDC A-48213</dd>
+                    <dt>Experience</dt>
+                    <dd>12 years</dd>
+                    <dt>Qualifications</dt>
+                    <dd>MBBS, MD (Cardiology), FACC</dd>
+                    <dt>Languages</dt>
+                    <dd>
+                      <span class="tags">
+                        <span class="pill p-mute">Bangla</span>
+                        <span class="pill p-mute">English</span>
+                        <span class="pill p-mute">Hindi</span>
+                      </span>
+                    </dd>
+                    <dt>Email</dt>
+                    <dd>sara.rahman@carewell.example</dd>
+                    <dt>Phone</dt>
+                    <dd>+880 1700 000000</dd>
+                    <dt>About</dt>
+                    <dd>
+                      Focuses on preventive cardiology, hypertension management
+                      and post-surgery recovery.
+                    </dd>
+                  </dl>
+                </div>
+              </div>
+            </div>
+          </section>
+        </main>
+      </div>
+    </div>
+    <div class="toast" id="toast" role="status"></div>
+    <script src="script.js"></script>
+  </body>
+</html>
