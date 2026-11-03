@@ -3,9 +3,9 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="../Design/Style.css">
-        <link rel="stylesheet" href="patient.css">
-        <script src="patient.js" defer></script>
+        <link rel="stylesheet" href="../../Design/Style.css">
+        <link rel="stylesheet" href="../Design/patient.css">
+        <script src="../JS/patient.js" defer></script>
         <title>My Profile | MediConnect</title>
     </head>
     <body>
@@ -15,12 +15,12 @@
                 <h1>MediConnect</h1>
             </div>
             <div class="topnav">
-                <a href="../commonui/index.html">Home</a>
-                <a href="../commonui/index.html#services">Services</a>
-                <a href="../commonui/index.html#doctors">Doctors</a>
-                <a href="../commonui/index.html#contact">Contact</a>
+                <a href="../../commonui/index.html">Home</a>
+                <a href="../../commonui/index.html#services">Services</a>
+                <a href="../../commonui/index.html#doctors">Doctors</a>
+                <a href="../../commonui/index.html#contact">Contact</a>
                 <a href="register.html">Patient Registration</a>
-                <a href="../commonui/login.html" class="login-btn">Sign In</a>
+                <a href="../../commonui/login.html" class="login-btn">Sign In</a>
             </div>
         </div>
 
@@ -28,17 +28,17 @@
             <div class="portal-layout">
                 <div class="side-menu">
                     <h2>Patient Portal</h2>
-                    <p id="menu-patient">Rahim Ahmed</p>
+                    <p id="menu-patient">No patient registered</p>
                     <a href="register.html">Registration</a>
                     <a href="dashboard.html">Dashboard</a>
                     <a href="profile.html" class="active">My Profile</a>
-                    <a href="book-appointment.html">Book Appointment</a>
-                    <a href="my-appointments.html">My Appointments</a>
-                    <a href="medical-records.html">Medical Records</a>
+                    <a href="bookAppointment.html">Book Appointment</a>
+                    <a href="myAppointment.html">My Appointments</a>
+                    <a href="medicalRecords.html">Medical Records</a>
                     <a href="prescriptions.html">Prescriptions</a>
                     <a href="bills.html">Bills & Payments</a>
-                    <a href="../commonui/index.html">Back to Home</a>
-                    <a href="../commonui/login.html">Logout / Login</a>
+                    <a href="../../commonui/index.html">Back to Home</a>
+                    <a href="../../commonui/login.html">Logout / Login</a>
                 </div>
 
                 <main class="page-content">
@@ -52,19 +52,66 @@
 
                     <div class="content-columns">
                         <div class="main-panel">
-                            <form id="profile-form">
+                            <form id="profile-form" novalidate onsubmit="return collect_profile_data()" onreset="return reset_profile_form()">
                                 <fieldset>
                                     <legend>Personal and Contact Information</legend>
                                     <div class="form-grid">
-                                        <div><label for="profile-id">Patient ID</label><input id="profile-id" name="id" readonly></div>
-                                        <div><label for="profile-name">Full Name *</label><input type="text" id="profile-name" name="name" required></div>
-                                        <div><label for="profile-dob">Date of Birth *</label><input type="date" id="profile-dob" name="dob" required></div>
-                                        <div><label for="profile-gender">Gender *</label><select id="profile-gender" name="gender" required><option>Male</option><option>Female</option><option>Other</option></select></div>
-                                        <div><label for="profile-blood">Blood Group *</label><select id="profile-blood" name="bloodGroup" required><option>A+</option><option>A-</option><option>B+</option><option>B-</option><option>AB+</option><option>AB-</option><option>O+</option><option>O-</option></select></div>
-                                        <div><label for="profile-email">Email *</label><input type="email" id="profile-email" name="email" required></div>
-                                        <div><label for="profile-phone">Mobile Number *</label><input type="tel" id="profile-phone" name="phone" pattern="01[0-9]{9}" title="Enter 11 digits starting with 01" required></div>
-                                        <div><label for="profile-emergency">Emergency Contact</label><input type="tel" id="profile-emergency" name="emergency"></div>
-                                        <div class="wide"><label for="profile-address">Address *</label><textarea id="profile-address" name="address" rows="3" required></textarea></div>
+                                        <div>
+                                            <label for="profile-id">Patient ID</label>
+                                            <input id="profile-id" name="id" readonly>
+                                        </div>
+                                        <div>
+                                            <label for="profile-name">Full Name *</label>
+                                            <input type="text" id="profile-name" name="name" required>
+                                            <p id="profile-name-error" class="error-message"></p>
+                                        </div>
+                                        <div>
+                                            <label for="profile-dob">Date of Birth *</label>
+                                            <input type="date" id="profile-dob" name="dob" required>
+                                            <p id="profile-dob-error" class="error-message"></p>
+                                        </div>
+                                        <div>
+                                            <label for="profile-gender">Gender *</label>
+                                            <select id="profile-gender" name="gender" required>
+                                                <option>Male</option>
+                                                <option>Female</option>
+                                                </select>
+<p id="profile-gender-error" class="error-message"></p>
+                                            </div>
+                                        <div>
+                                            <label for="profile-blood">Blood Group *</label>
+                                            <select id="profile-blood" name="bloodGroup" required>
+                                                <option>A+</option>
+                                                <option>A-</option>
+                                                <option>B+</option>
+                                                <option>B-</option>
+                                                <option>AB+</option>
+                                                <option>AB-</option>
+                                                <option>O+</option>
+                                                <option>O-</option>
+                                            </select>
+<p id="profile-blood-error" class="error-message"></p>
+                                        </div>
+                                        <div>
+                                            <label for="profile-email">Email *</label>
+                                            <input type="email" id="profile-email" name="email" required>
+                                            <p id="profile-email-error" class="error-message"></p>
+                                        </div>
+                                        <div>
+                                            <label for="profile-phone">Mobile Number *</label>
+                                            <input type="tel" id="profile-phone" name="phone" required>
+                                            <p id="profile-phone-error" class="error-message"></p>
+                                        </div>
+                                        <div>
+                                            <label for="profile-emergency">Emergency Contact</label>
+                                            <input type="tel" id="profile-emergency" name="emergency">
+                                            <p id="profile-emergency-error" class="error-message"></p>
+                                        </div>
+                                        <div class="wide">
+                                            <label for="profile-address">Address *</label>
+                                            <textarea id="profile-address" name="address" rows="3" required></textarea>
+                                            <p id="profile-address-error" class="error-message"></p>
+                                        </div>
                                     </div>
                                     <button type="submit" class="button">Save Changes</button>
                                     <button type="reset" class="button button-light">Reset</button>
@@ -75,8 +122,8 @@
                             <fieldset>
                                 <legend>Profile Summary</legend>
                                 <div class="profile-circle">P</div>
-                                <h3 id="profile-summary-name">Rahim Ahmed</h3>
-                                <p id="profile-summary-id">Patient ID: P0001</p>
+                                <h3 id="profile-summary-name">Patient</h3>
+                                <p id="profile-summary-id">Patient ID: Not assigned</p>
                                 <p class="note">Information is saved in this browser for the classroom demo.</p>
                                 <p id="profile-message" class="success-message"></p>
                             </fieldset>
@@ -88,7 +135,7 @@
             <div class="footer">
                 <p>&copy; 2026 MediConnect | Web Technologies Group Project</p>
                 <p class="note">Classroom frontend demonstration using fictional data. No real login or payments.</p>
-                <p><a href="../commonui/index.html">Home</a> | <a href="../commonui/login.html">Login</a></p>
+                <p><a href="../../commonui/index.html">Home</a> | <a href="../../commonui/login.html">Login</a></p>
             </div>
         </div>
     </body>

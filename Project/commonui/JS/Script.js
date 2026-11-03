@@ -1,8 +1,3 @@
-
-console.log("JS Connected");
-// alert("JS Connected");
-
-
 // ===================================
 // HOMEPAGE NAVIGATION
 // ===================================
@@ -152,10 +147,6 @@ function validRole()
     }
 }
 
-
-// ===================================
-// CLEAR VALIDATION ERRORS
-// ===================================
 
 function clear_errors()
 {

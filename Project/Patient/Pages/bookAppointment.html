@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Use the same shared design file as commonui when it exists. -->
+        <link rel="stylesheet" href="../../Design/Style.css">
+        <link rel="stylesheet" href="../Design/patient.css">
+        <script src="../JS/patient.js" defer></script>
+        <title>Book Appointment | MediConnect</title>
+    </head>
+    <body>
+        <div class="navbar">
+            <div class="header">
+                <div class="logo" aria-hidden="true">+</div>
+                <h1>MediConnect</h1>
+            </div>
+            <div class="topnav">
+                <a href="../../commonui/index.html">Home</a>
+                <a href="../../commonui/index.html#services">Services</a>
+                <a href="../../commonui/index.html#doctors">Doctors</a>
+                <a href="../../commonui/index.html#contact">Contact</a>
+                <a href="register.html">Patient Registration</a>
+                <a href="../../commonui/login.html" class="login-btn">Sign In</a>
+            </div>
+        </div>
+
+        <div class="container patient-container">
+            <div class="portal-layout">
+                <div class="side-menu">
+                    <h2>Patient Portal</h2>
+                    <p id="menu-patient">No patient registered</p>
+                    <a href="register.html">Registration</a>
+                    <a href="dashboard.html">Dashboard</a>
+                    <a href="profile.html">My Profile</a>
+                    <a href="bookAppointment.html" class="active">Book Appointment</a>
+                    <a href="myAppointment.html">My Appointments</a>
+                    <a href="medicalRecords.html">Medical Records</a>
+                    <a href="prescriptions.html">Prescriptions</a>
+                    <a href="bills.html">Bills & Payments</a>
+                    <a href="../../commonui/index.html">Back to Home</a>
+                    <a href="../../commonui/login.html">Logout / Login</a>
+                </div>
+
+                <main class="page-content">
+                    <div class="page-heading">
+                        <div>
+                            <p class="page-type">PATIENT PORTAL</p>
+                            <h2>Book Appointment</h2>
+                            <p class="note">Choose a doctor, preferred date and time, then submit a demo request.</p>
+                        </div>
+                    </div>
+
+                    <div class="content-columns">
+                        <div class="main-panel">
+                            <form id="booking-form" novalidate onsubmit="return collect_booking_data()" onreset="clear_booking_errors()">
+                                <fieldset>
+                                    <legend>Appointment Request</legend>
+                                    <div class="form-grid">
+                                        <div>
+                                            <label for="book-specialty">Specialty *</label>
+                                            <select id="book-specialty" name="specialty" required>
+                                                <option value="">Select specialty</option>
+                                                <option>General Medicine</option><option>Cardiology</option><option>Dermatology</option>
+                                            </select>
+<p id="book-specialty-error" class="error-message"></p>
+                                        </div>
+                                        <div>
+                                            <label for="book-doctor">Doctor *</label>
+                                            <select id="book-doctor" name="doctorId" required><option value="">Choose specialty first</option></select>
+                                            <p id="book-doctor-error" class="error-message"></p>
+                                        </div>
+                                        <div><label for="book-date">Preferred Date *</label><input type="date" id="book-date" name="date" required><p id="book-date-error" class="error-message"></p></div>
+                                        <div>
+                                            <label for="book-time">Preferred Time *</label>
+                                            <select id="book-time" name="time" required>
+                                                <option value="">Select time</option>
+                                                <option value="09:00">09:00 AM</option><option value="10:00">10:00 AM</option>
+                                                <option value="11:30">11:30 AM</option><option value="14:00">02:00 PM</option>
+                                            </select>
+<p id="book-time-error" class="error-message"></p>
+                                        </div>
+                                        <div><label for="book-type">Visit Type *</label><select id="book-type" name="type"><option>In-person</option><option>Online</option></select></div>
+                                        <div><label for="book-reason">Reason for Visit *</label><input type="text" id="book-reason" name="reason" placeholder="E.g. Routine checkup" required><p id="book-reason-error" class="error-message"></p></div>
+                                        <div class="wide"><label for="book-symptoms">Symptoms / Additional Notes</label><textarea id="book-symptoms" name="symptoms" rows="4" placeholder="Optional notes"></textarea></div>
+                                    </div>
+                                    <p><label class="check"><input type="checkbox" id="book-confirm" required> I confirm this is a sample appointment request.</label></p>
+                                    <p id="book-confirm-error" class="error-message"></p>
+                                    <p id="booking-message" class="error-message"></p>
+                                    <button class="button" type="submit">Confirm Booking</button>
+                                    <button class="button button-light" type="reset">Reset</button>
+                                </fieldset>
+                            </form>
+                        </div>
+                        <div class="info-panel">
+                            <fieldset>
+                                <legend>Selected Doctor</legend>
+                                <h3 id="doctor-name">Choose a doctor</h3>
+                                <p id="doctor-specialty">Specialty will appear here.</p>
+                                <p><strong>Consultation Fee: </strong><span id="doctor-fee">Not selected</span></p>
+                                <p class="note">Doctors and consultation fees match the MediConnect homepage.</p>
+                                <p class="note">The system will reject a duplicate demo time slot for the same doctor.</p>
+                            </fieldset>
+                        </div>
+                    </div>
+                </main>
+            </div>
+
+            <div class="footer">
+                <p>&copy; 2026 MediConnect | Web Technologies Group Project</p>
+                <p class="note">Classroom frontend demonstration using fictional data. No real login or payments.</p>
+                <p><a href="../../commonui/index.html">Home</a> | <a href="../../commonui/login.html">Login</a></p>
+            </div>
+        </div>
+    </body>
+</html>

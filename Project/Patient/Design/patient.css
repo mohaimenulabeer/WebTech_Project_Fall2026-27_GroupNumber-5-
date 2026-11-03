@@ -1,0 +1,589 @@
+/* MediConnect Patient Portal CSS
+   Same blue logo, navigation, forms and buttons as commonui.
+   This file changes the Patient Portal only. */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #213547;
+    background-color: #f5f8fc;
+    line-height: 1.5;
+}
+
+a {
+    color: #087c91;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Top navigation follows the structure of commonui/index.html */
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+    background-color: white;
+    padding: 18px 25px;
+    border-bottom: 1px solid #dbe3e9;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    margin-bottom: 18px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+/* Header */
+
+.navbar .header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-shrink: 0;
+}
+.navbar .logo {
+    width: 45px;
+    height: 45px;
+    background-color: #078f88;
+    color: white;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    font-weight: bold;
+}
+.navbar .header h1 {
+    font-size: 24px;
+    color: #172b45;
+    margin: 0;
+    white-space: nowrap;
+}
+
+.topnav {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 18px;
+}
+
+.topnav a {
+    color: #30485e;
+    font-size: 14px;
+}
+
+.topnav .login-btn {
+    padding: 9px 18px;
+    border-radius: 7px;
+    background-color: #087eae;
+    color: white;
+}
+
+/* Main portal: same dark sidebar and light content cards as before */
+.patient-container {
+    width: 94%;
+    max-width: 1400px;
+    margin: 25px auto;
+}
+
+.portal-layout {
+    display: flex;
+    align-items: stretch;
+    min-height: 720px;
+    background-color: #f5f8fc;
+    border: 1px solid #e0e8f0;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.side-menu {
+    width: 235px;
+    flex-shrink: 0;
+    padding: 24px 16px;
+    background-color: #172c46;
+    color: white;
+}
+
+.side-menu h2 {
+    margin: 0 0 6px;
+    color: white;
+    font-size: 20px;
+}
+
+.side-menu p {
+    color: #c0cfdf;
+    font-size: 13px;
+}
+
+.side-menu a {
+    display: block;
+    padding: 12px 13px;
+    margin: 5px 0;
+    border-radius: 7px;
+    color: #e6edf5;
+    font-size: 14px;
+}
+
+.side-menu a:hover,
+.side-menu a.active {
+    background-color: #078e88;
+    color: white;
+    text-decoration: none;
+}
+
+.page-content {
+    flex: 1;
+    min-width: 0;
+    padding: 30px;
+}
+
+.page-heading {
+    margin-bottom: 22px;
+}
+
+.page-heading h2 {
+    margin: 0;
+    font-size: 28px;
+    color: #17304b;
+}
+
+.page-type {
+    margin: 0 0 5px;
+    color: #078e88;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.note {
+    color: #667a8c;
+    font-size: 13px;
+}
+
+/* Existing commonui class names: welcome, cards, fieldset, button */
+.welcome {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 24px;
+    border-radius: 10px;
+    background-color: #e7f3f8;
+    margin-bottom: 20px;
+}
+
+.welcome h3 {
+    margin: 0 0 6px;
+    font-size: 21px;
+}
+
+.welcome-box {
+    width: 300px;
+    max-width: 100%;
+    padding: 16px;
+    background-color: white;
+    border-radius: 8px;
+    border: 1px solid #dce8ee;
+}
+
+.welcome-box h3 {
+    font-size: 16px;
+}
+
+.welcome-box ul {
+    margin-bottom: 0;
+    padding-left: 20px;
+    font-size: 13px;
+}
+
+.content-columns {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.main-panel {
+    flex: 2;
+    min-width: 0;
+}
+
+.info-panel {
+    flex: 1;
+    min-width: 260px;
+}
+
+.records-columns .main-panel {
+    flex: 1.7;
+}
+
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.cards .stat {
+    flex: 1;
+    min-width: 160px;
+    margin: 0;
+}
+
+.stat h3 {
+    margin: 5px 0;
+    font-size: 29px;
+    color: #088b84;
+}
+
+.stat p {
+    margin: 0;
+    font-size: 12px;
+    color: #7a8998;
+}
+
+fieldset {
+    min-width: 0;
+    margin: 0 0 20px;
+    padding: 22px;
+    border: 1px solid #e0e7ee;
+    border-radius: 9px;
+    background-color: white;
+}
+
+legend {
+    padding: 0 8px;
+    font-weight: bold;
+    font-size: 15px;
+    color: #1c3e57;
+}
+
+fieldset ul {
+    padding-left: 20px;
+}
+
+fieldset li {
+    margin-bottom: 10px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.form-grid .wide {
+    grid-column: 1 / 3;
+}
+
+label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+input,
+select,
+textarea {
+    display: block;
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #d8e2ec;
+    border-radius: 6px;
+    font: inherit;
+    font-size: 13px;
+    background-color: white;
+    color: #263e50;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: 2px solid #a5d8d4;
+    border-color: #078e88;
+}
+
+input[readonly] {
+    background-color: #f1f5f8;
+}
+
+.check {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    font-weight: normal;
+}
+
+.check input {
+    width: auto;
+}
+
+.button {
+    display: inline-block;
+    width: auto;
+    padding: 10px 18px;
+    margin: 7px 7px 0 0;
+    border: 1px solid #078e88;
+    border-radius: 6px;
+    background-color: #078e88;
+    color: white;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.button:hover {
+    background-color: #056f6b;
+    color: white;
+    text-decoration: none;
+}
+
+.button-light {
+    border-color: #d6e1e9;
+    background-color: #f4f8fa;
+    color: #38516b;
+}
+
+.button-light:hover {
+    background-color: #e2e9ee;
+    color: #38516b;
+}
+
+.table-scroll {
+    overflow-x: auto;
+    margin-top: 15px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    font-size: 13px;
+}
+
+th,
+td {
+    padding: 12px;
+    border-bottom: 1px solid #e7edf2;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f6f9;
+    color: #344b61;
+    white-space: nowrap;
+}
+
+.table-button {
+    padding: 6px 9px;
+    margin-right: 5px;
+    border: 0;
+    border-radius: 5px;
+    color: #087e79;
+    background-color: #e3f6f2;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.danger {
+    color: #a93339;
+    background-color: #ffebed;
+}
+
+.status {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 5px;
+    background-color: #e5f6ed;
+    color: #167454;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.status-pending,
+.status-unpaid {
+    background-color: #fff2d8;
+    color: #966000;
+}
+
+.status-cancelled {
+    background-color: #fce4e4;
+    color: #a93339;
+}
+
+.search-row {
+    display: flex;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-bottom: 15px;
+}
+
+.search-row > div {
+    flex: 1;
+    min-width: 170px;
+}
+
+.quick-links a {
+    display: block;
+    padding: 11px;
+    margin-bottom: 8px;
+    border-radius: 6px;
+    background-color: #f1f6f9;
+}
+
+.profile-circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    color: white;
+    background-color: #078e88;
+    font-size: 28px;
+}
+
+.success-message {
+    color: #087b58;
+    font-size: 13px;
+}
+
+.details-line {
+    border-bottom: 1px solid #e7edf2;
+    padding: 9px 0;
+    font-size: 13px;
+}
+
+.bar-chart {
+    display: flex;
+    align-items: flex-end;
+    gap: 12px;
+    height: 145px;
+    padding: 10px 15px 0;
+    border-bottom: 1px solid #dbe5ed;
+}
+
+.bar-chart > div {
+    flex: 1;
+    min-width: 30px;
+    padding-top: 5px;
+    border-radius: 5px 5px 0 0;
+    color: white;
+    background-color: #078e88;
+    text-align: center;
+    font-size: 10px;
+}
+
+.footer {
+    padding: 18px 0;
+    text-align: center;
+    color: #748496;
+    font-size: 12px;
+}
+
+.footer p {
+    margin: 5px;
+}
+
+/* Small-screen layout */
+@media (max-width: 900px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .content-columns {
+        flex-direction: column;
+    }
+
+    .main-panel,
+    .info-panel {
+        width: 100%;
+    }
+}
+
+@media (max-width: 650px) {
+    .portal-layout {
+        display: block;
+    }
+
+    .side-menu {
+        width: 100%;
+    }
+
+    .side-menu a {
+        display: inline-block;
+        margin: 2px;
+        padding: 8px;
+    }
+
+    .page-content {
+        padding: 17px;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-grid .wide {
+        grid-column: 1;
+    }
+
+    .welcome {
+        display: block;
+    }
+
+    .welcome-box {
+        margin-top: 17px;
+    }
+}
+
+/* Print only the selected record, prescription or receipt. */
+@media print {
+    .navbar,
+    .side-menu,
+    .footer,
+    .page-heading,
+    .main-panel,
+    .dashboard-cards,
+    .print-panel button,
+    .print-panel .note {
+        display: none;
+    }
+
+    .page-content,
+    .info-panel {
+        width: 100%;
+        padding: 0;
+    }
+
+    .print-panel fieldset {
+        border: none;
+    }
+}
+
+
+
+/* Plain text below each input, matching commonui login errors. */
+.error-message
+{
+    color: #cc0000;
+    font-size: 15px;
+    font-weight: bold;
+    margin: 5px 0 0;
+    padding: 0;
+    background: none;
+    border: none;
+    box-shadow: none;
+}
+
+.error-message:empty
+{
+    display: none;
+}

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Use the same shared design file as commonui when it exists. -->
+        <link rel="stylesheet" href="../../Design/Style.css">
+        <link rel="stylesheet" href="../Design/patient.css">
+        <script src="../JS/patient.js" defer></script>
+        <title>My Appointments | MediConnect</title>
+    </head>
+    <body>
+        <div class="navbar">
+            <div class="header">
+                <div class="logo" aria-hidden="true">+</div>
+                <h1>MediConnect</h1>
+            </div>
+            <div class="topnav">
+                <a href="../../commonui/index.html">Home</a>
+                <a href="../../commonui/index.html#services">Services</a>
+                <a href="../../commonui/index.html#doctors">Doctors</a>
+                <a href="../../commonui/index.html#contact">Contact</a>
+                <a href="register.html">Patient Registration</a>
+                <a href="../../commonui/login.html" class="login-btn">Sign In</a>
+            </div>
+        </div>
+
+        <div class="container patient-container">
+            <div class="portal-layout">
+                <div class="side-menu">
+                    <h2>Patient Portal</h2>
+                    <p id="menu-patient">No patient registered</p>
+                    <a href="register.html">Registration</a>
+                    <a href="dashboard.html">Dashboard</a>
+                    <a href="profile.html">My Profile</a>
+                    <a href="bookAppointment.html">Book Appointment</a>
+                    <a href="myAppointment.html" class="active">My Appointments</a>
+                    <a href="medicalRecords.html">Medical Records</a>
+                    <a href="prescriptions.html">Prescriptions</a>
+                    <a href="bills.html">Bills & Payments</a>
+                    <a href="../../commonui/index.html">Back to Home</a>
+                    <a href="../../commonui/login.html">Logout / Login</a>
+                </div>
+
+                <main class="page-content">
+                    <div class="page-heading">
+                        <div>
+                            <p class="page-type">PATIENT PORTAL</p>
+                            <h2>My Appointments</h2>
+                            <p class="note">Search appointments, check their status, or cancel an upcoming booking.</p>
+                        </div>
+                    </div>
+
+                    <div class="cards dashboard-cards">
+                        <fieldset class="stat"><legend>Total Appointments</legend><h3 id="appointment-total">0</h3></fieldset>
+                        <fieldset class="stat"><legend>Confirmed</legend><h3 id="appointment-confirmed">0</h3></fieldset>
+                        <fieldset class="stat"><legend>Pending</legend><h3 id="appointment-pending">0</h3></fieldset>
+                    </div>
+                    <fieldset>
+                        <legend>Appointment History</legend>
+                        <div class="search-row">
+                            <div><label for="appointment-search">Search</label><input id="appointment-search" type="text" placeholder="Doctor name or appointment ID"></div>
+                            <div><label for="appointment-filter">Status</label><select id="appointment-filter"><option value="">All statuses</option><option>Pending</option><option>Confirmed</option><option>Completed</option><option>Cancelled</option></select></div>
+                            <a href="bookAppointment.html" class="button">+ New Booking</a>
+                        </div>
+                        <div class="table-scroll">
+                            <table>
+                                <thead><tr><th>Appointment ID</th><th>Doctor</th><th>Specialty</th><th>Date</th><th>Time</th><th>Status</th><th>Action</th></tr></thead>
+                                <tbody id="appointments-table"></tbody>
+                            </table>
+                        </div>
+                        <p id="appointments-empty" class="note" hidden>No appointments found.</p>
+                        <p id="appointments-message" class="success-message"></p>
+                    </fieldset>
+                </main>
+            </div>
+
+            <div class="footer">
+                <p>&copy; 2026 MediConnect | Web Technologies Group Project</p>
+                <p class="note">Classroom frontend demonstration using fictional data. No real login or payments.</p>
+                <p><a href="../../commonui/index.html">Home</a> | <a href="../../commonui/login.html">Login</a></p>
+            </div>
+        </div>
+    </body>
+</html>

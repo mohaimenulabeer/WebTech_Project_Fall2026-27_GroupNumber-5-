@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Use the same shared design file as commonui when it exists. -->
+        <link rel="stylesheet" href="../../Design/Style.css">
+        <link rel="stylesheet" href="../Design/patient.css">
+        <script src="../JS/patient.js" defer></script>
+        <title>Prescriptions | MediConnect</title>
+    </head>
+    <body>
+        <div class="navbar">
+            <div class="header">
+                <div class="logo" aria-hidden="true">+</div>
+                <h1>MediConnect</h1>
+            </div>
+            <div class="topnav">
+                <a href="../../commonui/index.html">Home</a>
+                <a href="../../commonui/index.html#services">Services</a>
+                <a href="../../commonui/index.html#doctors">Doctors</a>
+                <a href="../../commonui/index.html#contact">Contact</a>
+                <a href="register.html">Patient Registration</a>
+                <a href="../../commonui/login.html" class="login-btn">Sign In</a>
+            </div>
+        </div>
+
+        <div class="container patient-container">
+            <div class="portal-layout">
+                <div class="side-menu">
+                    <h2>Patient Portal</h2>
+                    <p id="menu-patient">No patient registered</p>
+                    <a href="register.html">Registration</a>
+                    <a href="dashboard.html">Dashboard</a>
+                    <a href="profile.html">My Profile</a>
+                    <a href="bookAppointment.html">Book Appointment</a>
+                    <a href="myAppointment.html">My Appointments</a>
+                    <a href="medicalRecords.html">Medical Records</a>
+                    <a href="prescriptions.html" class="active">Prescriptions</a>
+                    <a href="bills.html">Bills & Payments</a>
+                    <a href="../../commonui/index.html">Back to Home</a>
+                    <a href="../../commonui/login.html">Logout / Login</a>
+                </div>
+
+                <main class="page-content">
+                    <div class="page-heading">
+                        <div>
+                            <p class="page-type">PATIENT PORTAL</p>
+                            <h2>Prescriptions</h2>
+                            <p class="note">Review your sample prescriptions and print a preview.</p>
+                        </div>
+                    </div>
+
+                    <div class="content-columns records-columns">
+                        <div class="main-panel">
+                            <fieldset>
+                                <legend>Prescription History</legend>
+                                <div class="table-scroll">
+                                    <table>
+                                        <thead><tr><th>Prescription ID</th><th>Date</th><th>Doctor</th><th>Diagnosis</th><th>Action</th></tr></thead>
+                                        <tbody id="prescriptions-table"></tbody>
+                                    </table>
+                                </div>
+                            </fieldset>
+                        </div>
+                        <div class="info-panel print-panel">
+                            <fieldset>
+                                <legend>Prescription Details</legend>
+                                <p class="note">Fictional prescription, not valid for medical use.</p>
+                                <div id="prescription-detail"><p>Select a prescription to view its details.</p></div>
+                                <button class="button" id="prescription-print" type="button">Print Preview</button>
+                            </fieldset>
+                        </div>
+                    </div>
+                </main>
+            </div>
+
+            <div class="footer">
+                <p>&copy; 2026 MediConnect | Web Technologies Group Project</p>
+                <p class="note">Classroom frontend demonstration using fictional data. No real login or payments.</p>
+                <p><a href="../../commonui/index.html">Home</a> | <a href="../../commonui/login.html">Login</a></p>
+            </div>
+        </div>
+    </body>
+</html>
