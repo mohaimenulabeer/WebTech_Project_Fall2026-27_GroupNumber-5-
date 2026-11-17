@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Admin Dashboard</title>
+        <link rel="stylesheet" href="../Design/Style.css">
+        <script src="../JS/Common.js"></script>
+        <script src="../JS/Dashboard.js"></script>
+    </head>
+    <body class="admin" onload="loadDashboard()">
+        <img src="../Images/logo.svg" id="logo" alt="Clinic Logo">
+
+        <div class="header">
+            <h1>Admin Dashboard - System Overview</h1>
+            <p><span id="WelcomeAdmin">Welcome, Admin User</span> | <span id="CurrentDate"></span></p>
+        </div>
+
+        <div class="topnav">
+            <a href="../index.html">Home</a>
+            <a href="AdminLogin.html">Login</a>
+            <a href="AdminRegistration.html">Registration</a>
+            <a href="Dashboard.html" class="active">Dashboard</a>
+            <a href="ManagePatients.html">Patients</a>
+            <a href="ManageDoctors.html">Doctors</a>
+            <a href="ManageReceptionists.html">Receptionists</a>
+            <a href="Appointments.html">Appointments</a>
+            <a href="Complaints.html">Complaints</a>
+            <a href="AddStaff.html">Add Staff</a>
+            <a href="ManageDepartment.html">Departments</a>
+            <a href="GenerateReport.html">Reports</a>
+            <a href="Settings.html">Settings</a>
+            <a href="#" onclick="logoutAdmin()">Logout</a>
+        </div>
+
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h2 id="TotalPatients">0</h2>
+                    <p>Total Patients</p>
+                </div>
+                <div class="stat-card green">
+                    <h2 id="TotalDoctors">0</h2>
+                    <p>Total Doctors</p>
+                </div>
+                <div class="stat-card orange">
+                    <h2 id="TotalReceptionists">0</h2>
+                    <p>Receptionists</p>
+                </div>
+                <div class="stat-card red">
+                    <h2 id="TotalAppointments">0</h2>
+                    <p>Appointments</p>
+                </div>
+            </div>
+
+            <fieldset>
+                <legend>Doctor Verification Requests</legend>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Specialization</th>
+                            <th>Experience</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="DoctorVerifyBody"></tbody>
+                </table>
+            </fieldset>
+        </div>
+
+        <div class="footer">
+            <h5>Created By Rifat Rudro</h5>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Add Staff</title>
+        <link rel="stylesheet" href="../Design/Style.css">
+        <script src="../JS/Common.js"></script>
+        <script src="../JS/Management.js"></script>
+    </head>
+    <body class="admin">
+        <img src="../Images/logo.svg" id="logo" alt="Clinic Logo">
+        <div class="header"><h1>Add Clinic Staff</h1></div>
+        <div class="topnav">
+            <a href="../index.html">Home</a>
+            <a href="AdminLogin.html">Login</a>
+            <a href="AdminRegistration.html">Registration</a>
+            <a href="Dashboard.html">Dashboard</a>
+            <a href="ManagePatients.html">Patients</a>
+            <a href="ManageDoctors.html">Doctors</a>
+            <a href="ManageReceptionists.html">Receptionists</a>
+            <a href="Appointments.html">Appointments</a>
+            <a href="Complaints.html">Complaints</a>
+            <a href="AddStaff.html" class="active">Add Staff</a>
+            <a href="ManageDepartment.html">Departments</a>
+            <a href="GenerateReport.html">Reports</a>
+            <a href="Settings.html">Settings</a>
+            <a href="#" onclick="logoutAdmin()">Logout</a>
+        </div>
+        <form id="AddStaffForm" onsubmit="return addNewStaff()" onreset="clearAllErrors()" novalidate>
+            <fieldset>
+                <legend>New Staff Registration</legend>
+                <table>
+                    <tr>
+                        <td><label for="StaffRole">Role:</label></td>
+                        <td>
+                            <select id="StaffRole">
+                                <option value="Doctor">Doctor</option>
+                                <option value="Receptionist">Receptionist</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="StaffID">Staff ID:</label></td>
+                        <td><input type="text" id="StaffID" placeholder="e.g. D004 or R203">
+                            <p class="error" id="StaffIDError"></p></td>
+                    </tr>
+                    <tr>
+                        <td><label for="StaffName">Full Name:</label></td>
+                        <td><input type="text" id="StaffName" placeholder="e.g. Dr. Tareq Mahmud">
+                            <p class="error" id="StaffNameError"></p></td>
+                    </tr>
+                    <tr>
+                        <td><label for="StaffDetail">Specialization / Shift:</label></td>
+                        <td><input type="text" id="StaffDetail" placeholder="e.g. Neurology or Morning Shift">
+                            <p class="error" id="StaffDetailError"></p></td>
+                    </tr>
+                    <tr>
+                        <td><label for="StaffPhone">Phone Number:</label></td>
+                        <td><input type="tel" id="StaffPhone" placeholder="e.g. 01700000000">
+                            <p class="error" id="StaffPhoneError"></p></td>
+                    </tr>
+                </table>
+            </fieldset>
+            <p id="ResultText"></p>
+            <input type="submit" value="Add Staff">
+            <input type="reset" value="Reset">
+        </form>
+        <div class="footer"><h5>Created By Rifat Rudro</h5></div>
+    </body>
+</html>

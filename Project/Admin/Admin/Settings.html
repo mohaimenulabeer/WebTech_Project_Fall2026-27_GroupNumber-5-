@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Admin Settings</title>
+        <link rel="stylesheet" href="../Design/Style.css">
+        <script src="../JS/Common.js"></script>
+        <script src="../JS/Management.js"></script>
+    </head>
+    <body class="admin">
+        <img src="../Images/logo.svg" id="logo" alt="Clinic Logo">
+        <div class="header"><h1>Admin Account Settings</h1></div>
+        <div class="topnav">
+            <a href="../index.html">Home</a>
+            <a href="AdminLogin.html">Login</a>
+            <a href="AdminRegistration.html">Registration</a>
+            <a href="Dashboard.html">Dashboard</a>
+            <a href="ManagePatients.html">Patients</a>
+            <a href="ManageDoctors.html">Doctors</a>
+            <a href="ManageReceptionists.html">Receptionists</a>
+            <a href="Appointments.html">Appointments</a>
+            <a href="Complaints.html">Complaints</a>
+            <a href="AddStaff.html">Add Staff</a>
+            <a href="ManageDepartment.html">Departments</a>
+            <a href="GenerateReport.html">Reports</a>
+            <a href="Settings.html" class="active">Settings</a>
+            <a href="#" onclick="logoutAdmin()">Logout</a>
+        </div>
+        <form onsubmit="return saveAdminSettings()" novalidate>
+            <fieldset>
+                <legend>Change Admin Password</legend>
+                <table>
+                    <tr>
+                        <td><label for="NewPassword">New Password:</label></td>
+                        <td><input type="password" id="NewPassword" placeholder="Minimum 6 characters"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="ConfirmPassword">Confirm Password:</label></td>
+                        <td><input type="password" id="ConfirmPassword" placeholder="Re-enter password"></td>
+                    </tr>
+                </table>
+                <br>
+                <input type="submit" value="Update Password">
+                <p id="ResultText"></p>
+            </fieldset>
+        </form>
+        <div class="footer"><h5>Created By Rifat Rudro</h5></div>
+    </body>
+</html>

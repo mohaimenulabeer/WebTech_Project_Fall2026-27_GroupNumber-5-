@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="220" height="55" viewBox="0 0 220 55">
+  <rect x="2" y="5" width="44" height="44" rx="10" fill="#1e6bb8"/>
+  <path d="M24 14v26M11 27h26" stroke="#ffffff" stroke-width="6" stroke-linecap="round"/>
+  <text x="56" y="34" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="bold" fill="#1e3a5f">MediConnect</text>
+  <text x="57" y="47" font-family="Segoe UI, Arial, sans-serif" font-size="10" fill="#5a7184">Clinic Management System</text>
+</svg>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Manage Receptionists</title>
+        <link rel="stylesheet" href="../Design/Style.css">
+        <script src="../JS/Common.js"></script>
+        <script src="../JS/Management.js"></script>
+    </head>
+    <body class="admin" onload="renderReceptionists()">
+        <img src="../Images/logo.svg" id="logo" alt="Clinic Logo">
+        <div class="header"><h1>Manage Receptionists</h1></div>
+        <div class="topnav">
+            <a href="../index.html">Home</a>
+            <a href="AdminLogin.html">Login</a>
+            <a href="AdminRegistration.html">Registration</a>
+            <a href="Dashboard.html">Dashboard</a>
+            <a href="ManagePatients.html">Patients</a>
+            <a href="ManageDoctors.html">Doctors</a>
+            <a href="ManageReceptionists.html" class="active">Receptionists</a>
+            <a href="Appointments.html">Appointments</a>
+            <a href="Complaints.html">Complaints</a>
+            <a href="AddStaff.html">Add Staff</a>
+            <a href="ManageDepartment.html">Departments</a>
+            <a href="GenerateReport.html">Reports</a>
+            <a href="Settings.html">Settings</a>
+            <a href="#" onclick="logoutAdmin()">Logout</a>
+        </div>
+        <div class="container">
+            <fieldset>
+                <legend>Reception Staff Directory</legend>
+                <table class="data-table">
+                    <thead>
+                        <tr><th>ID</th><th>Name</th><th>Shift</th><th>Phone</th><th>Status</th><th>Action</th></tr>
+                    </thead>
+                    <tbody id="ReceptionistsTableBody"></tbody>
+                </table>
+            </fieldset>
+        </div>
+        <div class="footer"><h5>Created By Rifat Rudro</h5></div>
+    </body>
+</html>
