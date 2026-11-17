@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Add Staff</title>
+        <link rel="stylesheet" href="../Design/Style.css">
+        <script src="../JS/Common.js"></script>
+        <script src="../JS/AdminPanel.js"></script>
+    </head>
+    <body class="admin" onload="renderStaffTable()">
+        <img src="../Images/logo.svg" id="logo" alt="Clinic Logo">
+        <div class="header"><h1>Add & Manage Doctors</h1></div>
+        <div class="topnav">
+            <a href="../index.html">Home</a>
+            <a href="AdminLogin.html">Login</a>
+            <a href="AdminRegistration.html">Registration</a>
+            <a href="Dashboard.html">Dashboard</a>
+            <a href="AddStaff.html" class="active">Add Staff</a>
+            <a href="ManageDepartment.html">Departments</a>
+            <a href="GenerateReport.html">Reports</a>
+            <a href="#" onclick="logoutAdmin()">Logout</a>
+        </div>
+        <form id="AddStaffForm" onsubmit="return addNewStaff()" onreset="clearAllErrors()" novalidate>
+            <fieldset>
+                <legend>Add New Doctor</legend>
+                <table>
+                    <tr>
+                        <td><label for="StaffID">Doctor ID:</label></td>
+                        <td><input type="text" id="StaffID" placeholder="e.g. D004">
+                            <p class="error" id="StaffIDError"></p></td>
+                    </tr>
+                    <tr>
+                        <td><label for="StaffName">Full Name:</label></td>
+                        <td><input type="text" id="StaffName" placeholder="e.g. Dr. Tareq Mahmud">
+                            <p class="error" id="StaffNameError"></p></td>
+                    </tr>
+                    <tr>
+                        <td><label for="StaffDetail">Specialization:</label></td>
+                        <td><input type="text" id="StaffDetail" placeholder="e.g. Neurology">
+                            <p class="error" id="StaffDetailError"></p></td>
+                    </tr>
+                    <tr>
+                        <td><label for="StaffExperience">Experience:</label></td>
+                        <td><input type="text" id="StaffExperience" placeholder="e.g. 5 years"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="StaffPhone">Phone Number:</label></td>
+                        <td><input type="tel" id="StaffPhone" placeholder="e.g. 01700000000">
+                            <p class="error" id="StaffPhoneError"></p></td>
+                    </tr>
+                </table>
+                <br>
+                <input type="submit" value="Add Doctor">
+                <input type="reset" value="Reset">
+                <p id="ResultText"></p>
+            </fieldset>
+
+            <fieldset>
+                <legend>Doctor List</legend>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Specialization</th>
+                            <th>Experience</th>
+                            <th>Phone</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="StaffTableBody"></tbody>
+                </table>
+            </fieldset>
+        </form>
+        <div class="footer"><h5>Clinic Management System &copy; 2026</h5></div>
+    </body>
+</html>

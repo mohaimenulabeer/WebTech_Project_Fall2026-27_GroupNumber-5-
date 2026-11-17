@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Admin Registration</title>
+        <link rel="stylesheet" href="../Design/Style.css">
+        <script src="../JS/Common.js"></script>
+    </head>
+
+    <body class="admin" onload="makeCaptcha()">
+        <img src="../Images/logo.svg" id="logo" alt="Clinic Logo">
+
+        <div class="header">
+            <h1>Admin Registration</h1>
+        </div>
+
+        <div class="topnav">
+            <a href="../index.html">Home</a>
+            <a href="AdminLogin.html">Login</a>
+            <a href="AdminRegistration.html" class="active">Registration</a>
+            <a href="AddStaff.html">Add Staff</a>
+            <a href="ManageDepartment.html">Departments</a>
+            <a href="GenerateReport.html">Reports</a>
+        </div>
+
+        <form onsubmit="return validateAdminRegistration()" onreset="clearAllErrors()" novalidate>
+            <fieldset>
+                <legend>Create Admin Account</legend>
+                <table>
+                    <tr>
+                        <td><label for="FullName">Full Name:</label></td>
+                        <td><input type="text" id="FullName" placeholder="Enter full name">
+                            <p class="error" id="FullNameError"></p></td>
+                    </tr>
+                    <tr>
+                        <td><label for="OfficialEmail">Official Email:</label></td>
+                        <td><input type="email" id="OfficialEmail" placeholder="Enter official email">
+                            <p class="error" id="EmailError"></p></td>
+                    </tr>
+                    <tr>
+                        <td><label for="Password">Password:</label></td>
+                        <td><input type="password" id="Password" placeholder="Create a password">
+                            <label class="choice"><input type="checkbox" onclick="togglePassword('Password', this)"> Show password</label>
+                            <p class="error" id="PasswordError"></p></td>
+                    </tr>
+                    <tr>
+                        <td><label for="EmployeeID">Admin ID:</label></td>
+                        <td><input type="text" id="EmployeeID" placeholder="e.g. ADM-5678">
+                            <p class="error" id="EmployeeIDError"></p></td>
+                    </tr>
+                    <tr>
+                        <td><label for="Department">Department:</label></td>
+                        <td>
+                            <select id="Department">
+                                <option value="">Select department</option>
+                                <option value="Administration">Administration</option>
+                                <option value="Human Resources">Human Resources</option>
+                                <option value="Operations">Operations</option>
+                                <option value="Accounts">Accounts</option>
+                            </select>
+                            <p class="error" id="DepartmentError"></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="AuthCode">Authorization Code:</label></td>
+                        <td><input type="text" id="AuthCode" placeholder="Enter authorization code">
+                            <p class="error" id="AuthCodeError"></p></td>
+                    </tr>
+                    <tr>
+                        <td><label for="JoiningDate">Joining Date:</label></td>
+                        <td><input type="date" id="JoiningDate">
+                            <p class="error" id="JoiningDateError"></p></td>
+                    </tr>
+                    <tr>
+                        <td><label for="Captcha">Security Check:</label></td>
+                        <td><p id="CaptchaQuestion"></p>
+                            <input type="number" id="Captcha" placeholder="Your answer">
+                            <button type="button" class="small-btn" onclick="makeCaptcha()">New question</button>
+                            <p class="error" id="CaptchaError"></p></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <label class="choice"><input type="checkbox" id="AgreeTerms"> I agree to the terms and conditions</label>
+                            <p class="error" id="AgreeError"></p>
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+
+            <p id="ResultText"></p>
+
+            <input type="submit" id="submit" value="Register">
+            <input type="reset" id="reset" value="Reset">
+            <p class="hint">Already have an account? <a href="AdminLogin.html">Login here</a></p>
+        </form>
+
+        <div class="footer">
+            <h5>Clinic Management System &copy; 2026</h5>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Clinic Reports</title>
+        <link rel="stylesheet" href="../Design/Style.css">
+        <script src="../JS/Common.js"></script>
+        <script src="../JS/AdminPanel.js"></script>
+    </head>
+    <body class="admin" onload="generateClinicReport()">
+        <img src="../Images/logo.svg" id="logo" alt="Clinic Logo">
+        <div class="header"><h1>Clinic Reports</h1></div>
+        <div class="topnav">
+            <a href="../index.html">Home</a>
+            <a href="AdminLogin.html">Login</a>
+            <a href="AdminRegistration.html">Registration</a>
+            <a href="Dashboard.html">Dashboard</a>
+            <a href="AddStaff.html">Add Staff</a>
+            <a href="ManageDepartment.html">Departments</a>
+            <a href="GenerateReport.html" class="active">Reports</a>
+            <a href="#" onclick="logoutAdmin()">Logout</a>
+        </div>
+        <div class="container">
+            <fieldset>
+                <legend>Select Date Range</legend>
+                <table>
+                    <tr>
+                        <td><label for="FromDate">From Date:</label></td>
+                        <td><input type="date" id="FromDate" value="2026-01-01"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="ToDate">To Date:</label></td>
+                        <td><input type="date" id="ToDate" value="2026-12-31"></td>
+                    </tr>
+                </table>
+                <br>
+                <button type="button" class="btn" onclick="generateClinicReport()">Generate Report</button>
+                <p id="ResultText"></p>
+            </fieldset>
+
+            <div class="stats-grid">
+                <div class="stat-card"><h2 id="RepTotal">0</h2><p>Total Appointments</p></div>
+                <div class="stat-card green"><h2 id="RepCompleted">0</h2><p>Completed</p></div>
+                <div class="stat-card red"><h2 id="RepCancelled">0</h2><p>Cancelled</p></div>
+                <div class="stat-card orange"><h2 id="RepPending">0</h2><p>Pending</p></div>
+            </div>
+
+            <fieldset>
+                <legend>Appointments by Department</legend>
+                <div class="bar-row">
+                    <div class="bar-label">General Medicine (40)</div>
+                    <div class="bar-track"><div class="bar-fill" style="width: 85%;">40</div></div>
+                </div>
+                <div class="bar-row">
+                    <div class="bar-label">Cardiology (30)</div>
+                    <div class="bar-track"><div class="bar-fill" style="width: 65%; background:#16a34a;">30</div></div>
+                </div>
+                <div class="bar-row">
+                    <div class="bar-label">Dermatology (25)</div>
+                    <div class="bar-track"><div class="bar-fill" style="width: 55%; background:#ed8936;">25</div></div>
+                </div>
+                <div class="bar-row">
+                    <div class="bar-label">Pediatrics (20)</div>
+                    <div class="bar-track"><div class="bar-fill" style="width: 45%; background:#6366f1;">20</div></div>
+                </div>
+            </fieldset>
+        </div>
+        <div class="footer"><h5>Clinic Management System &copy; 2026</h5></div>
+    </body>
+</html>
