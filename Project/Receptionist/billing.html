@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Billing & Payments | MediConnect</title>
+    <link rel="stylesheet" href="receptionist.css">
+</head>
+
+<body data-page="billing">
+    <header class="top">
+        <div class="brand">✚ <span>Medi</span>Connect</div>
+    </header>
+    <div class="layout">
+        <aside><a href="dashboard.html">Dashboard</a><a href="register-patient.html">Register Patient</a><a
+                href="patients.html">Patient List</a><a href="book-appointment.html">Book Appointment</a><a
+                href="appointments.html">Manage Appointments</a><a href="check-in.html">Check-in Patients</a><a
+                href="billing.html">Billing & Payments</a></aside>
+        <main>
+            <div class="heading">
+                <div>
+                    <h1>Billing & Payments</h1>
+                    <div class="muted">Manage clinic front desk operations</div>
+                </div><span class="pill">Receptionist</span>
+            </div>
+            <div id="notice"></div>
+            <div class="panel">
+                <h2>Create a Bill</h2>
+                <form id="billForm">
+                    <div class="form-grid">
+                        <div class="field"><label for="patientId">Patient</label><select name="patientId" id="patientId"
+                                required></select></div>
+                        <div class="field"><label for="description">Service / Description</label><input id="description"
+                                name="description" type="text" required></div>
+                        <div class="field"><label for="amount">Amount (BDT)</label><input id="amount" name="amount"
+                                type="number" required min="1" step="0.01"></div>
+                        <div class="field"><label for="appointmentId">Appointment ID (optional)</label><input
+                                id="appointmentId" name="appointmentId" type="text"></div>
+                    </div>
+                    <p><button class="btn" type="submit">Generate Bill</button></p>
+                </form>
+            </div>
+            <h2>Recent Bills</h2>
+            <div class="panel">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Bill ID</th>
+                            <th>Patient</th>
+                            <th>Description</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="billList"></tbody>
+                </table>
+            </div>
+            <p class="muted">Payments are simulated for a frontend classroom project. No real money is collected.</p>
+        </main>
+    </div>
+    <script src="receptionist.js"></script>
+</body>
+
+</html>

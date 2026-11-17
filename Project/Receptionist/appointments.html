@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Manage Appointments | MediConnect</title>
+    <link rel="stylesheet" href="receptionist.css">
+</head>
+
+<body data-page="appointments">
+    <header class="top">
+        <div class="brand">✚ <span>Medi</span>Connect</div>
+    </header>
+    <div class="layout">
+        <aside><a href="dashboard.html">Dashboard</a><a href="register-patient.html">Register Patient</a><a
+                href="patients.html">Patient List</a><a href="book-appointment.html">Book Appointment</a><a
+                href="appointments.html">Manage Appointments</a><a href="check-in.html">Check-in Patients</a><a
+                href="billing.html">Billing & Payments</a></aside>
+        <main>
+            <div class="heading">
+                <div>
+                    <h1>Manage Appointments</h1>
+                    <div class="muted">Manage clinic front desk operations</div>
+                </div><span class="pill">Receptionist</span>
+            </div>
+            <div id="notice"></div>
+            <div class="toolbar"><input id="search" placeholder="Search appointment, patient, doctor"><select
+                    id="filter">
+                    <option>All</option>
+                    <option>Scheduled</option>
+                    <option>Checked-in</option>
+                    <option>Completed</option>
+                    <option>Cancelled</option>
+                </select><a class="btn" href="book-appointment.html">+ New Appointment</a></div>
+            <div class="panel">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Patient</th>
+                            <th>Doctor</th>
+                            <th>Date & Time</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="appointmentsList"></tbody>
+                </table>
+            </div>
+            <div class="panel" id="editor" hidden>
+                <h2>Reschedule Appointment</h2><input type="hidden" id="editId">
+                <form id="editForm">
+                    <div class="form-grid">
+                        <div class="field"><label for="doctorId">Doctor</label><select name="doctorId" id="doctorId"
+                                required></select></div>
+                        <div class="field"><label for="date">New Date</label><input id="date" name="date" type="date"
+                                required></div>
+                        <div class="field"><label for="time">New Time</label><input id="time" name="time" type="time"
+                                required></div>
+                    </div>
+                    <p><button class="btn" type="submit">Save Schedule</button></p>
+                </form>
+            </div>
+        </main>
+    </div>
+    <script src="receptionist.js"></script>
+</body>
+
+</html>

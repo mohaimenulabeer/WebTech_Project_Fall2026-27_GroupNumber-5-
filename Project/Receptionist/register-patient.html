@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Register Patient | MediConnect</title>
+    <link rel="stylesheet" href="receptionist.css">
+</head>
+
+<body data-page="register">
+    <header class="top">
+        <div class="brand">✚ <span>Medi</span>Connect</div>
+    </header>
+    <div class="layout">
+        <aside><a href="dashboard.html">Dashboard</a><a href="register-patient.html">Register Patient</a><a
+                href="patients.html">Patient List</a><a href="book-appointment.html">Book Appointment</a><a
+                href="appointments.html">Manage Appointments</a><a href="check-in.html">Check-in Patients</a><a
+                href="billing.html">Billing & Payments</a></aside>
+        <main>
+            <div class="heading">
+                <div>
+                    <h1>Register Patient</h1>
+                    <div class="muted">Manage clinic front desk operations</div>
+                </div><span class="pill">Receptionist</span>
+            </div>
+            <div id="notice"></div>
+            <div class="panel">
+                <h2>New Patient Information</h2>
+                <form id="patientForm">
+                    <div class="form-grid">
+                        <div class="field"><label for="name">Full Name</label><input id="name" name="name" type="text"
+                                required></div>
+                        <div class="field"><label for="phone">Phone Number</label><input id="phone" name="phone"
+                                type="tel" required pattern="[0-9+ -]{7,18}"></div>
+                        <div class="field"><label for="email">Email</label><input id="email" name="email" type="email">
+                        </div>
+                        <div class="field"><label for="dob">Date of Birth</label><input id="dob" name="dob" type="date">
+                        </div>
+                        <div class="field"><label for="gender">Gender</label><select name="gender" id="gender" required>
+                                <option>Male</option>
+                                <option>Female</option>
+                                <option>Other</option>
+                            </select></div>
+                        <div class="field"><label for="blood">Blood Group</label><select name="blood" id="blood"
+                                required>
+                                <option>Unknown</option>
+                                <option>A+</option>
+                                <option>A-</option>
+                                <option>B+</option>
+                                <option>B-</option>
+                                <option>AB+</option>
+                                <option>AB-</option>
+                                <option>O+</option>
+                                <option>O-</option>
+                            </select></div>
+                        <div class="field"><label for="address">Address</label><input id="address" name="address"
+                                type="text"></div>
+                    </div>
+                    <p><button class="btn" type="submit">Register Patient</button></p>
+                </form>
+            </div>
+        </main>
+    </div>
+    <script src="receptionist.js"></script>
+</body>
+
+</html>
