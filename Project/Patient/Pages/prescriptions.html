@@ -3,7 +3,6 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <!-- Use the same shared design file as commonui when it exists. -->
         <link rel="stylesheet" href="../../Design/Style.css">
         <link rel="stylesheet" href="../Design/patient.css">
         <script src="../JS/patient.js" defer></script>
@@ -12,17 +11,12 @@
     <body>
         <div class="navbar">
             <div class="header">
-                <div class="logo" aria-hidden="true">+</div>
+                <div class="logo" aria-hidden= "true">+</div>
                 <h1>MediConnect</h1>
             </div>
-            <div class="topnav">
-                <a href="../../commonui/index.html">Home</a>
-                <a href="../../commonui/index.html#services">Services</a>
-                <a href="../../commonui/index.html#doctors">Doctors</a>
-                <a href="../../commonui/index.html#contact">Contact</a>
-                <a href="register.html">Patient Registration</a>
-                <a href="../../commonui/login.html" class="login-btn">Sign In</a>
-            </div>
+            <a href="../../commonui/Pages/index.html" class="login-back">
+             &larr; Back to Home
+            </a>
         </div>
 
         <div class="container patient-container">
@@ -66,7 +60,6 @@
                         <div class="info-panel print-panel">
                             <fieldset>
                                 <legend>Prescription Details</legend>
-                                <p class="note">Fictional prescription, not valid for medical use.</p>
                                 <div id="prescription-detail"><p>Select a prescription to view its details.</p></div>
                                 <button class="button" id="prescription-print" type="button">Print Preview</button>
                             </fieldset>
@@ -77,7 +70,6 @@
 
             <div class="footer">
                 <p>&copy; 2026 MediConnect | Web Technologies Group Project</p>
-                <p class="note">Classroom frontend demonstration using fictional data. No real login or payments.</p>
                 <p><a href="../../commonui/index.html">Home</a> | <a href="../../commonui/login.html">Login</a></p>
             </div>
         </div>

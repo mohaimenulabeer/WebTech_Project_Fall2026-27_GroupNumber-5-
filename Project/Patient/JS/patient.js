@@ -1,44 +1,4 @@
 console.log("Patient JS Connected");
-// MediConnect Patient Portal: classroom demonstration only.
-// No real login, payment, or patient records are stored here.
-
-
-// ===================================
-// COMMON PATIENT DATA
-// ===================================
-
-let doctors = [
-    { id: "D0001", name: "Dr. S. Islam", specialty: "General Medicine", fee: 800 },
-    { id: "D0002", name: "Dr. N. Rahman", specialty: "Cardiology", fee: 1200 },
-    { id: "D0003", name: "Dr. M. Ahmed", specialty: "Dermatology", fee: 900 }
-];
-
-function readData(Name)
-{
-    let Saved = localStorage.getItem("mediconnect_" + Name);
-
-    if(Saved != null)
-    {
-        try
-        {
-            let Data = JSON.parse(Saved);
-            if(Array.isArray(Data))
-            {
-                return Data;
-            }
-        }
-        catch(Error)
-        {
-            console.log("Invalid sample data for " + Name);
-        }
-    }
-    return [];
-}
-
-function saveData(Name, Data)
-{
-    localStorage.setItem("mediconnect_" + Name, JSON.stringify(Data));
-}
 
 function today()
 {
@@ -47,88 +7,6 @@ function today()
     let Day = ("0" + DateNow.getDate()).slice(-2);
     return DateNow.getFullYear() + "-" + Month + "-" + Day;
 }
-
-function newId(Letter, Items)
-{
-    let Largest = 0;
-
-    for(let i = 0; i < Items.length; i++)
-    {
-        let NumberPart = Number(Items[i].id.substring(1));
-        if(NumberPart > Largest)
-        {
-            Largest = NumberPart;
-        }
-    }
-    return Letter + ("0000" + (Largest + 1)).slice(-4);
-}
-
-function doctorInfo(ID)
-{
-    for(let i = 0; i < doctors.length; i++)
-    {
-        if(doctors[i].id == ID)
-        {
-            return doctors[i];
-        }
-    }
-    return { name: "Unknown Doctor", specialty: "", fee: 0 };
-}
-
-function money(Amount)
-{
-    return "BDT " + Number(Amount).toLocaleString("en-US");
-}
-
-let patients = readData("patients");
-let activeId = localStorage.getItem("mediconnect_active_patient_id");
-let patient = null;
-
-for(let i = 0; i < patients.length; i++)
-{
-    if(patients[i].id == activeId)
-    {
-        patient = patients[i];
-        break;
-    }
-}
-
-if(document.getElementById("menu-patient") != null)
-{
-    if(patient != null)
-    {
-        document.getElementById("menu-patient").textContent = patient.name + " | " + patient.id;
-    }
-    else
-    {
-        document.getElementById("menu-patient").innerHTML = "No patient registered";
-    }
-}
-
-function patientItems(Name)
-{
-    let All = readData(Name);
-    let Mine = [];
-
-    if(patient == null)
-    {
-        return Mine;
-    }
-
-    for(let i = 0; i < All.length; i++)
-    {
-        if(All[i].patientId == patient.id)
-        {
-            Mine.push(All[i]);
-        }
-    }
-    return Mine;
-}
-
-
-// ===================================
-// PLAIN RED INNERHTML VALIDATION
-// ===================================
 
 function validName(FieldID, ErrorID)
 {
@@ -140,9 +18,9 @@ function validName(FieldID, ErrorID)
         Error.innerHTML = "* Please enter your Full Name";
         return false;
     }
-    else if(Name.length < 3)
+    else if(Name.length < 6)
     {
-        Error.innerHTML = "* Name must contain at least 3 characters";
+        Error.innerHTML = "* Name must contain at least 6 characters";
         return false;
     }
     else
@@ -360,47 +238,40 @@ function validReason()
     }
 }
 
-function clear_errors(IDs)
+function clear_errors(FormID)
 {
-    for(let i = 0; i < IDs.length; i++)
+    let Errors = document.querySelectorAll("#" + FormID + " .error-message");
+
+    for(let i = 0; i < Errors.length; i++)
     {
-        document.getElementById(IDs[i]).innerHTML = "";
+        Errors[i].innerHTML = "";
     }
 }
 
 function clear_registration_errors()
 {
-    let IDs = ["reg-name-error", "reg-dob-error", "reg-gender-error", "reg-blood-error",
-        "reg-email-error", "reg-phone-error", "reg-address-error", "reg-emergency-error",
-        "reg-password-error", "reg-confirm-error", "reg-consent-error", "registration-message"];
-    clear_errors(IDs);
+    clear_errors("registration-form");
+    document.getElementById("registration-message").innerHTML = "";
 }
 
 function clear_profile_errors()
 {
-    let IDs = ["profile-name-error", "profile-dob-error", "profile-gender-error", "profile-blood-error",
-        "profile-email-error", "profile-phone-error", "profile-emergency-error", "profile-address-error",
-        "profile-message"];
-    clear_errors(IDs);
+    clear_errors("profile-form");
+    document.getElementById("profile-message").innerHTML = "";
 }
 
 function clear_booking_errors()
 {
-    let IDs = ["book-specialty-error", "book-doctor-error", "book-date-error",
-        "book-time-error", "book-reason-error", "book-confirm-error", "booking-message"];
-    clear_errors(IDs);
-
-    // Reset the doctor preview without changing the page layout.
+    clear_errors("booking-form");
+    document.getElementById("booking-message").innerHTML = "";
+    document.getElementById("booking-message").className = "error-message";
     document.getElementById("book-doctor").innerHTML = '<option value="">Choose specialty first</option>';
     document.getElementById("doctor-name").innerHTML = "Choose a doctor";
     document.getElementById("doctor-specialty").innerHTML = "Specialty will appear here.";
     document.getElementById("doctor-fee").innerHTML = "Not selected";
 }
 
-
-// ===================================
 // PAGE 1: PATIENT REGISTRATION
-// ===================================
 
 function collect_registration_data()
 {
@@ -418,36 +289,12 @@ function collect_registration_data()
 
     if(Name && BirthDate && Gender && BloodGroup && Email && Phone && Address && Emergency && Password && ConfirmPassword && Consent)
     {
-        let EmailAddress = document.getElementById("reg-email").value.trim();
-        let SavedPatients = readData("patients");
-
-        for(let i = 0; i < SavedPatients.length; i++)
-        {
-            if(SavedPatients[i].email.toLowerCase() == EmailAddress.toLowerCase())
-            {
-                document.getElementById("reg-email-error").innerHTML = "* This Email Address is already registered";
-                return false;
-            }
-        }
-
-        let NewPatient = {
-            id: newId("P", SavedPatients),
-            name: document.getElementById("reg-name").value.trim(),
-            dob: document.getElementById("reg-dob").value,
-            gender: document.getElementById("reg-gender").value,
-            bloodGroup: document.getElementById("reg-blood").value,
-            email: EmailAddress,
-            phone: document.getElementById("reg-phone").value.trim(),
-            address: document.getElementById("reg-address").value.trim(),
-            emergency: document.getElementById("reg-emergency").value.trim()
-        };
-
-        SavedPatients.push(NewPatient);
-        saveData("patients", SavedPatients);
-        localStorage.setItem("mediconnect_active_patient_id", NewPatient.id);
-
-        // Passwords are checked here, but are not stored or used for real login.
-        window.location.href = "dashboard.html";
+        document.getElementById("registration-message").innerHTML =
+            "All registration fields are valid. This is a frontend demo; no data was saved.";
+    }
+    else
+    {
+        document.getElementById("registration-message").innerHTML = "";
     }
     return false;
 }
@@ -457,153 +304,22 @@ if(document.getElementById("registration-form") != null)
     document.getElementById("reg-dob").max = today();
 }
 
-
-// ===================================
-// PAGE 2: PATIENT DASHBOARD
-// ===================================
-
-function cell(Row, Value)
-{
-    let TableCell = document.createElement("td");
-    TableCell.textContent = Value;
-    Row.appendChild(TableCell);
-    return TableCell;
-}
-
-function statusCell(Row, Status)
-{
-    let TableCell = cell(Row, Status);
-    TableCell.className = "status status-" + Status.toLowerCase();
-}
-
-function actionButton(Row, Title, Action, Danger)
-{
-    let TableCell = document.createElement("td");
-    let Button = document.createElement("button");
-    Button.type = "button";
-    Button.textContent = Title;
-
-    if(Danger == true)
-    {
-        Button.className = "table-button danger";
-    }
-    else
-    {
-        Button.className = "table-button";
-    }
-    Button.addEventListener("click", Action);
-    TableCell.appendChild(Button);
-    Row.appendChild(TableCell);
-}
-
-function detailLine(BoxID, Title, Value)
-{
-    let Paragraph = document.createElement("p");
-    let Bold = document.createElement("strong");
-    Bold.textContent = Title + ": ";
-    Paragraph.appendChild(Bold);
-    Paragraph.appendChild(document.createTextNode(Value));
-    document.getElementById(BoxID).appendChild(Paragraph);
-}
+//page 2: dashboard
 
 function displayDashboard()
 {
-    if(patient != null)
-    {
-        document.getElementById("welcome-name").textContent = patient.name;
-        document.getElementById("dashboard-patient-id").textContent = patient.id;
-    }
-    else
-    {
-        document.getElementById("welcome-name").textContent = "Patient";
-        document.getElementById("dashboard-patient-id").textContent = "Not assigned";
-    }
-
-    let Appointments = patientItems("appointments");
-    let Prescriptions = patientItems("prescriptions");
-    let Bills = patientItems("bills");
-    let Upcoming = 0;
-    let Completed = 0;
-    let Due = 0;
-
-    for(let i = 0; i < Appointments.length; i++)
-    {
-        let Appointment = Appointments[i];
-        if(Appointment.status == "Completed")
-        {
-            Completed++;
-        }
-        if(Appointment.date >= today() && (Appointment.status == "Pending" || Appointment.status == "Confirmed"))
-        {
-            Upcoming++;
-            let Row = document.createElement("tr");
-            cell(Row, Appointment.id);
-            cell(Row, doctorInfo(Appointment.doctorId).name);
-            cell(Row, Appointment.date);
-            cell(Row, Appointment.time);
-            statusCell(Row, Appointment.status);
-            document.getElementById("dashboard-appointments").appendChild(Row);
-        }
-    }
-
-    for(let i = 0; i < Bills.length; i++)
-    {
-        if(Bills[i].status == "Unpaid")
-        {
-            Due = Due + Number(Bills[i].amount);
-        }
-    }
-
-    document.getElementById("stat-upcoming").innerHTML = Upcoming;
-    document.getElementById("stat-completed").innerHTML = Completed;
-    document.getElementById("stat-prescriptions").innerHTML = Prescriptions.length;
-    document.getElementById("stat-due").innerHTML = money(Due);
-    document.getElementById("dashboard-empty").hidden = Upcoming > 0;
+    document.getElementById("dashboard-empty").hidden = false;
 }
 
-if(document.getElementById("welcome-name") != null)
+if(document.getElementById("dashboard-empty") != null)
 {
     displayDashboard();
 }
 
-
-// ===================================
-// PAGE 3: MY PROFILE
-// ===================================
-
-function showProfile()
-{
-    if(patient == null)
-    {
-        document.getElementById("profile-summary-name").innerHTML = "Patient";
-        document.getElementById("profile-summary-id").innerHTML = "Patient ID: Not assigned";
-        document.getElementById("profile-message").innerHTML = "Register first to create your profile.";
-        document.getElementById("profile-message").className = "error-message";
-        return;
-    }
-
-    document.getElementById("profile-id").value = patient.id;
-    document.getElementById("profile-name").value = patient.name;
-    document.getElementById("profile-dob").value = patient.dob;
-    document.getElementById("profile-gender").value = patient.gender;
-    document.getElementById("profile-blood").value = patient.bloodGroup;
-    document.getElementById("profile-email").value = patient.email;
-    document.getElementById("profile-phone").value = patient.phone;
-    document.getElementById("profile-emergency").value = patient.emergency;
-    document.getElementById("profile-address").value = patient.address;
-    document.getElementById("profile-summary-name").textContent = patient.name;
-    document.getElementById("profile-summary-id").textContent = "Patient ID: " + patient.id;
-}
+// page 3: profile
 
 function collect_profile_data()
 {
-    if(patient == null)
-    {
-        document.getElementById("profile-message").innerHTML = "* Please register as a patient first";
-        document.getElementById("profile-message").className = "error-message";
-        return false;
-    }
-
     let Name = validName("profile-name", "profile-name-error");
     let BirthDate = validDateOfBirth("profile-dob", "profile-dob-error");
     let Gender = validChoice("profile-gender", "profile-gender-error", "Gender");
@@ -615,39 +331,14 @@ function collect_profile_data()
 
     if(Name && BirthDate && Gender && BloodGroup && Email && Phone && Emergency && Address)
     {
-        let EditedEmail = document.getElementById("profile-email").value.trim();
-        let SavedPatients = readData("patients");
-
-        for(let i = 0; i < SavedPatients.length; i++)
-        {
-            if(SavedPatients[i].id != patient.id && SavedPatients[i].email.toLowerCase() == EditedEmail.toLowerCase())
-            {
-                document.getElementById("profile-email-error").innerHTML = "* This Email Address belongs to another patient";
-                return false;
-            }
-        }
-
-        patient.name = document.getElementById("profile-name").value.trim();
-        patient.dob = document.getElementById("profile-dob").value;
-        patient.gender = document.getElementById("profile-gender").value;
-        patient.bloodGroup = document.getElementById("profile-blood").value;
-        patient.email = EditedEmail;
-        patient.phone = document.getElementById("profile-phone").value.trim();
-        patient.emergency = document.getElementById("profile-emergency").value.trim();
-        patient.address = document.getElementById("profile-address").value.trim();
-
-        for(let i = 0; i < SavedPatients.length; i++)
-        {
-            if(SavedPatients[i].id == patient.id)
-            {
-                SavedPatients[i] = patient;
-            }
-        }
-        saveData("patients", SavedPatients);
-        document.getElementById("menu-patient").textContent = patient.name + " | " + patient.id;
-        document.getElementById("profile-summary-name").textContent = patient.name;
-        document.getElementById("profile-message").className = "success-message";
-        document.getElementById("profile-message").innerHTML = "Profile updated successfully.";
+        document.getElementById("profile-summary-name").textContent =
+            document.getElementById("profile-name").value.trim();
+        document.getElementById("profile-message").innerHTML =
+            "All profile fields are valid. No changes were saved.";
+    }
+    else
+    {
+        document.getElementById("profile-message").innerHTML = "";
     }
     return false;
 }
@@ -655,20 +346,16 @@ function collect_profile_data()
 function reset_profile_form()
 {
     clear_profile_errors();
-    showProfile();
-    return false;
+    document.getElementById("profile-summary-name").innerHTML = "Patient";
+    return true;
 }
 
 if(document.getElementById("profile-form") != null)
 {
     document.getElementById("profile-dob").max = today();
-    showProfile();
 }
 
-
-// ===================================
 // PAGE 4: BOOK APPOINTMENT
-// ===================================
 
 function changeSpecialty()
 {
@@ -676,16 +363,19 @@ function changeSpecialty()
     let Select = document.getElementById("book-doctor");
     Select.innerHTML = '<option value="">Choose doctor</option>';
 
-    for(let i = 0; i < doctors.length; i++)
+    if(Specialty == "General Medicine")
     {
-        if(doctors[i].specialty == Specialty)
-        {
-            let Option = document.createElement("option");
-            Option.value = doctors[i].id;
-            Option.textContent = doctors[i].name;
-            Select.appendChild(Option);
-        }
+        Select.innerHTML += '<option value="Dr. S. Islam">Dr. S. Islam</option>';
     }
+    else if(Specialty == "Cardiology")
+    {
+        Select.innerHTML += '<option value="Dr. N. Rahman">Dr. N. Rahman</option>';
+    }
+    else if(Specialty == "Dermatology")
+    {
+        Select.innerHTML += '<option value="Dr. M. Ahmed">Dr. M. Ahmed</option>';
+    }
+
     document.getElementById("doctor-name").innerHTML = "Choose a doctor";
     document.getElementById("doctor-specialty").textContent = Specialty || "Specialty will appear here.";
     document.getElementById("doctor-fee").innerHTML = "Not selected";
@@ -695,10 +385,26 @@ function changeSpecialty()
 
 function changeDoctor()
 {
-    let Doctor = doctorInfo(document.getElementById("book-doctor").value);
-    document.getElementById("doctor-name").textContent = Doctor.name;
-    document.getElementById("doctor-specialty").textContent = Doctor.specialty;
-    document.getElementById("doctor-fee").textContent = money(Doctor.fee);
+    let Doctor = document.getElementById("book-doctor").value;
+    let Specialty = document.getElementById("book-specialty").value;
+    let Fee = "Not selected";
+
+    if(Doctor == "Dr. S. Islam")
+    {
+        Fee = "BDT 800";
+    }
+    else if(Doctor == "Dr. N. Rahman")
+    {
+        Fee = "BDT 1,200";
+    }
+    else if(Doctor == "Dr. M. Ahmed")
+    {
+        Fee = "BDT 900";
+    }
+
+    document.getElementById("doctor-name").textContent = Doctor || "Choose a doctor";
+    document.getElementById("doctor-specialty").textContent = Specialty || "Specialty will appear here.";
+    document.getElementById("doctor-fee").textContent = Fee;
     document.getElementById("book-doctor-error").innerHTML = "";
 }
 
@@ -710,49 +416,17 @@ function collect_booking_data()
     let Time = validChoice("book-time", "book-time-error", "Preferred Time");
     let Reason = validReason();
     let Consent = validConsent("book-confirm", "book-confirm-error");
-
-    if(patient == null)
-    {
-        document.getElementById("booking-message").innerHTML = "* Please register as a patient before booking";
-        return false;
-    }
-    else
-    {
-        document.getElementById("booking-message").innerHTML = "";
-    }
+    let Message = document.getElementById("booking-message");
 
     if(Specialty && Doctor && Date && Time && Reason && Consent)
     {
-        let DoctorID = document.getElementById("book-doctor").value;
-        let VisitDate = document.getElementById("book-date").value;
-        let VisitTime = document.getElementById("book-time").value;
-        let Appointments = readData("appointments");
-
-        for(let i = 0; i < Appointments.length; i++)
-        {
-            let Appointment = Appointments[i];
-            if(Appointment.doctorId == DoctorID && Appointment.date == VisitDate && Appointment.time == VisitTime && Appointment.status != "Cancelled")
-            {
-                document.getElementById("book-time-error").innerHTML = "* This doctor already has an appointment at this time";
-                return false;
-            }
-        }
-
-        let NewAppointment = {
-            id: newId("A", Appointments),
-            patientId: patient.id,
-            doctorId: DoctorID,
-            date: VisitDate,
-            time: VisitTime,
-            type: document.getElementById("book-type").value,
-            reason: document.getElementById("book-reason").value.trim(),
-            symptoms: document.getElementById("book-symptoms").value.trim(),
-            status: "Pending"
-        };
-
-        Appointments.push(NewAppointment);
-        saveData("appointments", Appointments);
-        window.location.href = "myAppointment.html";
+        Message.className = "success-message";
+        Message.innerHTML = "Appointment form is valid. No appointment was booked or saved.";
+    }
+    else
+    {
+        Message.className = "error-message";
+        Message.innerHTML = "";
     }
     return false;
 }
@@ -765,82 +439,48 @@ if(document.getElementById("booking-form") != null)
 }
 
 
-// ===================================
-// PAGE 5: MY APPOINTMENTS
-// ===================================
-
-function displayAppointments()
+function filterTable(TableID, SearchID, FilterID, StatusColumn, EmptyID)
 {
-    let Appointments = patientItems("appointments");
-    let Search = document.getElementById("appointment-search").value.toLowerCase();
-    let Filter = document.getElementById("appointment-filter").value;
-    let TableBody = document.getElementById("appointments-table");
-    let Matches = 0;
-    let Confirmed = 0;
-    let Pending = 0;
-    TableBody.innerHTML = "";
+    let TableBody = document.getElementById(TableID);
+    let Search = document.getElementById(SearchID).value.toLowerCase();
+    let Filter = "";
+    let Visible = 0;
 
-    for(let i = 0; i < Appointments.length; i++)
+    if(FilterID != "")
     {
-        let Appointment = Appointments[i];
-        if(Appointment.status == "Confirmed")
+        Filter = document.getElementById(FilterID).value;
+    }
+
+    let Rows = TableBody.querySelectorAll("tr");
+    for(let i = 0; i < Rows.length; i++)
+    {
+        let Text = Rows[i].textContent.toLowerCase();
+        let Status = "";
+
+        if(StatusColumn >= 0 && Rows[i].cells.length > StatusColumn)
         {
-            Confirmed++;
-        }
-        if(Appointment.status == "Pending")
-        {
-            Pending++;
-        }
-        if(Filter != "" && Appointment.status != Filter)
-        {
-            continue;
-        }
-        if(!Appointment.id.toLowerCase().includes(Search) && !doctorInfo(Appointment.doctorId).name.toLowerCase().includes(Search))
-        {
-            continue;
+            Status = Rows[i].cells[StatusColumn].textContent.trim();
         }
 
-        Matches++;
-        let Row = document.createElement("tr");
-        cell(Row, Appointment.id);
-        cell(Row, doctorInfo(Appointment.doctorId).name);
-        cell(Row, doctorInfo(Appointment.doctorId).specialty);
-        cell(Row, Appointment.date);
-        cell(Row, Appointment.time);
-        statusCell(Row, Appointment.status);
-
-        if((Appointment.status == "Pending" || Appointment.status == "Confirmed") && Appointment.date >= today())
+        if(Text.includes(Search) && (Filter == "" || Status == Filter))
         {
-            addCancelButton(Row, Appointment.id);
+            Rows[i].hidden = false;
+            Visible++;
         }
         else
         {
-            cell(Row, "View");
+            Rows[i].hidden = true;
         }
-        TableBody.appendChild(Row);
     }
-    document.getElementById("appointment-total").innerHTML = Appointments.length;
-    document.getElementById("appointment-confirmed").innerHTML = Confirmed;
-    document.getElementById("appointment-pending").innerHTML = Pending;
-    document.getElementById("appointments-empty").hidden = Matches > 0;
+
+    document.getElementById(EmptyID).hidden = Visible > 0;
 }
 
-function addCancelButton(Row, AppointmentID)
+// page 5 appointments
+
+function displayAppointments()
 {
-    actionButton(Row, "Cancel", function()
-    {
-        let Appointments = readData("appointments");
-        for(let i = 0; i < Appointments.length; i++)
-        {
-            if(patient != null && Appointments[i].id == AppointmentID && Appointments[i].patientId == patient.id)
-            {
-                Appointments[i].status = "Cancelled";
-            }
-        }
-        saveData("appointments", Appointments);
-        displayAppointments();
-        document.getElementById("appointments-message").innerHTML = "Appointment " + AppointmentID + " cancelled (demo).";
-    }, true);
+    filterTable("appointments-table", "appointment-search", "appointment-filter", 5, "appointments-empty");
 }
 
 if(document.getElementById("appointments-table") != null)
@@ -850,59 +490,11 @@ if(document.getElementById("appointments-table") != null)
     displayAppointments();
 }
 
-
-// ===================================
-// PAGE 6: MEDICAL RECORDS
-// ===================================
-
-function viewRecord(Record)
-{
-    document.getElementById("record-detail").innerHTML = "";
-    detailLine("record-detail", "Record ID", Record.id);
-    detailLine("record-detail", "Visit Date", Record.date);
-    detailLine("record-detail", "Doctor", doctorInfo(Record.doctorId).name);
-    detailLine("record-detail", "Diagnosis", Record.diagnosis);
-    detailLine("record-detail", "Treatment", Record.treatment);
-    detailLine("record-detail", "Follow-up Date", Record.followUp || "Not set");
-}
-
-function addRecordView(Row, Record)
-{
-    actionButton(Row, "View", function()
-    {
-        viewRecord(Record);
-    }, false);
-}
+// page 6: medical records
 
 function displayRecords()
 {
-    let Records = patientItems("records");
-    let Search = document.getElementById("record-search").value.toLowerCase();
-    let TableBody = document.getElementById("records-table");
-    let Matches = 0;
-    TableBody.innerHTML = "";
-
-    for(let i = 0; i < Records.length; i++)
-    {
-        let Record = Records[i];
-        if(!Record.diagnosis.toLowerCase().includes(Search) && !doctorInfo(Record.doctorId).name.toLowerCase().includes(Search))
-        {
-            continue;
-        }
-        Matches++;
-        let Row = document.createElement("tr");
-        cell(Row, Record.id);
-        cell(Row, Record.date);
-        cell(Row, doctorInfo(Record.doctorId).name);
-        cell(Row, Record.diagnosis);
-        addRecordView(Row, Record);
-        TableBody.appendChild(Row);
-    }
-    document.getElementById("records-empty").hidden = Matches > 0;
-    if(Records.length == 0)
-    {
-        document.getElementById("record-detail").innerHTML = "No medical records for this patient yet.";
-    }
+    filterTable("records-table", "record-search", "", -1, "records-empty");
 }
 
 function printPage()
@@ -915,165 +507,20 @@ if(document.getElementById("records-table") != null)
     document.getElementById("record-search").addEventListener("input", displayRecords);
     document.getElementById("record-print").addEventListener("click", printPage);
     displayRecords();
-    let Records = patientItems("records");
-    if(Records.length > 0)
-    {
-        viewRecord(Records[0]);
-    }
 }
 
-
-// ===================================
-// PAGE 7: PRESCRIPTIONS
-// ===================================
-
-function viewPrescription(Prescription)
-{
-    document.getElementById("prescription-detail").innerHTML = "";
-    detailLine("prescription-detail", "Prescription ID", Prescription.id);
-    detailLine("prescription-detail", "Doctor", doctorInfo(Prescription.doctorId).name);
-    detailLine("prescription-detail", "Date", Prescription.date);
-    detailLine("prescription-detail", "Diagnosis", Prescription.diagnosis);
-    detailLine("prescription-detail", "Medication", Prescription.medicine);
-    detailLine("prescription-detail", "Dosage", Prescription.dosage);
-    detailLine("prescription-detail", "Duration", Prescription.duration);
-    detailLine("prescription-detail", "Instructions", Prescription.instructions || "Sample prescription only");
-}
-
-function addPrescriptionView(Row, Prescription)
-{
-    actionButton(Row, "View", function()
-    {
-        viewPrescription(Prescription);
-    }, false);
-}
+// Page 7: prescription
 
 if(document.getElementById("prescriptions-table") != null)
 {
-    let Prescriptions = patientItems("prescriptions");
-    for(let i = 0; i < Prescriptions.length; i++)
-    {
-        let Prescription = Prescriptions[i];
-        let Row = document.createElement("tr");
-        cell(Row, Prescription.id);
-        cell(Row, Prescription.date);
-        cell(Row, doctorInfo(Prescription.doctorId).name);
-        cell(Row, Prescription.diagnosis);
-        addPrescriptionView(Row, Prescription);
-        document.getElementById("prescriptions-table").appendChild(Row);
-    }
-    if(Prescriptions.length > 0)
-    {
-        viewPrescription(Prescriptions[0]);
-    }
-    else
-    {
-        document.getElementById("prescription-detail").innerHTML = "No prescriptions for this patient yet.";
-    }
     document.getElementById("prescription-print").addEventListener("click", printPage);
 }
 
-
-// ===================================
-// PAGE 8: BILLS AND PAYMENTS
-// ===================================
-
-let selectedBillId = "";
-
-function viewBill(Bill)
-{
-    selectedBillId = Bill.id;
-    document.getElementById("bill-detail").innerHTML = "";
-    detailLine("bill-detail", "Bill ID", Bill.id);
-    if(patient != null)
-    {
-        detailLine("bill-detail", "Patient", patient.name);
-    }
-    detailLine("bill-detail", "Service", Bill.service);
-    detailLine("bill-detail", "Date", Bill.date);
-    detailLine("bill-detail", "Amount", money(Bill.amount));
-    detailLine("bill-detail", "Payment Status", Bill.status);
-    detailLine("bill-detail", "Method", Bill.method);
-    document.getElementById("bill-demo-pay").hidden = Bill.status == "Paid";
-}
-
-function addBillView(Row, Bill)
-{
-    actionButton(Row, "View", function()
-    {
-        viewBill(Bill);
-    }, false);
-}
+// page 8 : bills and payment
 
 function displayBills()
 {
-    let Bills = patientItems("bills");
-    let Search = document.getElementById("bill-search").value.toLowerCase();
-    let Filter = document.getElementById("bill-filter").value;
-    let TableBody = document.getElementById("bills-table");
-    let Total = 0;
-    let Paid = 0;
-    let Matches = 0;
-    TableBody.innerHTML = "";
-
-    for(let i = 0; i < Bills.length; i++)
-    {
-        let Bill = Bills[i];
-        Total = Total + Number(Bill.amount);
-        if(Bill.status == "Paid")
-        {
-            Paid = Paid + Number(Bill.amount);
-        }
-        if(Filter != "" && Bill.status != Filter)
-        {
-            continue;
-        }
-        if(!Bill.id.toLowerCase().includes(Search) && !Bill.service.toLowerCase().includes(Search))
-        {
-            continue;
-        }
-
-        Matches++;
-        let Row = document.createElement("tr");
-        cell(Row, Bill.id);
-        cell(Row, Bill.service);
-        cell(Row, Bill.date);
-        cell(Row, money(Bill.amount));
-        statusCell(Row, Bill.status);
-        addBillView(Row, Bill);
-        TableBody.appendChild(Row);
-    }
-    document.getElementById("bill-total").innerHTML = money(Total);
-    document.getElementById("bill-paid").innerHTML = money(Paid);
-    document.getElementById("bill-unpaid").innerHTML = money(Total - Paid);
-    document.getElementById("bills-empty").hidden = Matches > 0;
-    if(Bills.length == 0)
-    {
-        document.getElementById("bill-detail").innerHTML = "No bills for this patient yet.";
-        document.getElementById("bill-demo-pay").hidden = true;
-    }
-}
-
-function payDemoBill()
-{
-    if(patient == null)
-    {
-        return;
-    }
-    let Bills = readData("bills");
-    for(let i = 0; i < Bills.length; i++)
-    {
-        if(Bills[i].id == selectedBillId && Bills[i].patientId == patient.id)
-        {
-            Bills[i].status = "Paid";
-            Bills[i].method = "Cash (Demo)";
-            saveData("bills", Bills);
-            viewBill(Bills[i]);
-            displayBills();
-            document.getElementById("bills-message").innerHTML = "Invoice marked paid (demo). No real payment was made.";
-            break;
-        }
-    }
+    filterTable("bills-table", "bill-search", "bill-filter", 4, "bills-empty");
 }
 
 if(document.getElementById("bills-table") != null)
@@ -1081,11 +528,5 @@ if(document.getElementById("bills-table") != null)
     document.getElementById("bill-search").addEventListener("input", displayBills);
     document.getElementById("bill-filter").addEventListener("change", displayBills);
     document.getElementById("bill-print").addEventListener("click", printPage);
-    document.getElementById("bill-demo-pay").addEventListener("click", payDemoBill);
     displayBills();
-    let Bills = patientItems("bills");
-    if(Bills.length > 0)
-    {
-        viewBill(Bills[0]);
-    }
 }
