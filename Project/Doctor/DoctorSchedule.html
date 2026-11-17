@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Set Consultation Schedule</title>
+    <link rel="stylesheet" href="css/doctor.css" />
+  </head>
+  <body>
+    <div class="app-layout">
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <div class="brand">
+          <h2>Doctor Portal</h2>
+          <p>Hospital Management System</p>
+        </div>
+        <nav class="sidebar-nav">
+          <a href="../index.html">Home</a>
+          <a href="DoctorLogin.html">Login</a>
+          <a href="DoctorRegistration.html">Registration</a>
+          <a href="DoctorPrescription.html">Prescription</a>
+          <a href="DoctorSchedule.html" class="active">Schedule</a>
+          <a href="DoctorLeave.html">Leave</a>
+        </nav>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="main-content">
+        <h1>Set Consultation Schedule</h1>
+
+        <form
+          id="scheduleForm"
+          onsubmit="return validateSchedule(event);"
+          novalidate
+        >
+          <!-- Chamber and Day Fieldset -->
+          <fieldset>
+            <legend>Chamber and Day</legend>
+
+            <div class="row">
+              <label for="chamberRoom">Chamber Room:</label>
+              <div class="field">
+                <input
+                  type="text"
+                  id="chamberRoom"
+                  placeholder="e.g. R-204"
+                  autocomplete="off"
+                />
+                <span class="error" id="chamberRoomErr"></span>
+              </div>
+            </div>
+
+            <div class="row">
+              <label for="day">Day:</label>
+              <div class="field">
+                <select id="day">
+                  <option value="">-- Select Day --</option>
+                  <option value="Saturday">Saturday</option>
+                  <option value="Sunday">Sunday</option>
+                  <option value="Monday">Monday</option>
+                  <option value="Tuesday">Tuesday</option>
+                  <option value="Wednesday">Wednesday</option>
+                  <option value="Thursday">Thursday</option>
+                  <option value="Friday">Friday</option>
+                </select>
+                <span class="error" id="dayErr"></span>
+              </div>
+            </div>
+
+            <div class="row">
+              <label>Visit Mode:</label>
+              <div class="field">
+                <div class="check-group">
+                  <label
+                    ><input type="checkbox" name="visitMode" value="In-person" />
+                    In-person</label
+                  >
+                  <label
+                    ><input type="checkbox" name="visitMode" value="Online" />
+                    Online</label
+                  >
+                </div>
+                <span class="error" id="visitModeErr"></span>
+              </div>
+            </div>
+          </fieldset>
+
+          <!-- Time and Patients Fieldset -->
+          <fieldset>
+            <legend>Time and Patients</legend>
+
+            <div class="row">
+              <label for="startTime">Start Time:</label>
+              <div class="field">
+                <input type="time" id="startTime" />
+                <span class="error" id="startTimeErr"></span>
+              </div>
+            </div>
+
+            <div class="row">
+              <label for="endTime">End Time:</label>
+              <div class="field">
+                <input type="time" id="endTime" />
+                <span class="hint"
+                  >Hospital hours 08:00 - 23:00, one session is 1 - 6 hours</span
+                >
+                <span class="error" id="endTimeErr"></span>
+              </div>
+            </div>
+
+            <div class="row">
+              <label for="timePerPatient">Time per Patient:</label>
+              <div class="field">
+                <select id="timePerPatient">
+                  <option value="">-- Select --</option>
+                  <option value="10">10 minutes</option>
+                  <option value="15">15 minutes</option>
+                  <option value="20">20 minutes</option>
+                  <option value="30">30 minutes</option>
+                </select>
+                <span class="error" id="timePerPatientErr"></span>
+              </div>
+            </div>
+
+            <div class="row">
+              <label for="maxPatients">Max Patients:</label>
+              <div class="field">
+                <input
+                  type="number"
+                  id="maxPatients"
+                  placeholder="1 - 40"
+                  min="1"
+                  max="40"
+                />
+                <span class="error" id="maxPatientsErr"></span>
+              </div>
+            </div>
+
+            <div class="row">
+              <label for="fee">Consultation Fee (BDT):</label>
+              <div class="field">
+                <input
+                  type="number"
+                  id="fee"
+                  placeholder="300 - 5000"
+                  min="300"
+                  max="5000"
+                />
+                <span class="error" id="feeErr"></span>
+              </div>
+            </div>
+          </fieldset>
+
+          <p class="message" id="formMsg"></p>
+
+          <div class="buttons">
+            <button type="submit" class="btn primary">Save Schedule</button>
+            <button type="button" class="btn secondary" onclick="resetForm()">
+              Reset
+            </button>
+          </div>
+        </form>
+      </main>
+    </div>
+
+    <script src="js/schedule.js"></script>
+  </body>
+</html>
