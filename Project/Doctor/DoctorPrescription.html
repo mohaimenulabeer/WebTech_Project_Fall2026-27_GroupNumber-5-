@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Write Prescription</title>
+    <link rel="stylesheet" href="css/doctor.css" />
+  </head>
+  <body>
+    <div class="app-layout">
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <div class="brand">
+          <h2>Doctor Portal</h2>
+          <p>Hospital Management System</p>
+        </div>
+        <nav class="sidebar-nav">
+          <a href="../index.html">Home</a>
+          <a href="DoctorLogin.html">Login</a>
+          <a href="DoctorRegistration.html">Registration</a>
+          <a href="DoctorPrescription.html" class="active">Prescription</a>
+          <a href="DoctorSchedule.html">Schedule</a>
+          <a href="DoctorLeave.html">Leave</a>
+        </nav>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="main-content">
+        <h1>Write Prescription</h1>
+
+        <form
+          id="prescriptionForm"
+          onsubmit="return validatePrescription(event);"
+          novalidate
+        >
+          <!-- Patient Fieldset -->
+          <fieldset>
+            <legend>Patient</legend>
+
+            <div class="row">
+              <label for="patientId">Patient ID:</label>
+              <div class="field">
+                <input
+                  type="text"
+                  id="patientId"
+                  placeholder="e.g. PAT-00001"
+                  autocomplete="off"
+                />
+                <span class="error" id="patientIdErr"></span>
+              </div>
+            </div>
+
+            <div class="row">
+              <label for="patientName">Patient Name:</label>
+              <div class="field">
+                <input
+                  type="text"
+                  id="patientName"
+                  placeholder="Enter full name"
+                />
+                <span class="error" id="patientNameErr"></span>
+              </div>
+            </div>
+
+            <div class="row">
+              <label for="age">Age:</label>
+              <div class="field">
+                <input type="number" id="age" min="1" max="120" />
+                <span class="error" id="ageErr"></span>
+              </div>
+            </div>
+
+            <div class="row">
+              <label for="diagnosis">Diagnosis:</label>
+              <div class="field">
+                <textarea
+                  id="diagnosis"
+                  rows="3"
+                  placeholder="e.g. Viral fever with sore throat"
+                ></textarea>
+                <span class="error" id="diagnosisErr"></span>
+              </div>
+            </div>
+          </fieldset>
+
+          <!-- Medicine Fieldset -->
+          <fieldset>
+            <legend>Medicine</legend>
+
+            <div class="row">
+              <label for="medicineName">Medicine Name:</label>
+              <div class="field">
+                <input
+                  type="text"
+                  id="medicineName"
+                  placeholder="e.g. Napa 500"
+                />
+                <span class="error" id="medicineNameErr"></span>
+              </div>
+            </div>
+
+            <div class="row">
+              <label for="dosage">Dosage:</label>
+              <div class="field">
+                <input type="text" id="dosage" placeholder="e.g. 1+0+1" />
+                <span class="hint">Morning + Noon + Night, each 0, 1 or 2</span>
+                <span class="error" id="dosageErr"></span>
+              </div>
+            </div>
+
+            <div class="row">
+              <label for="duration">Duration (days):</label>
+              <div class="field">
+                <input
+                  type="number"
+                  id="duration"
+                  placeholder="1 - 90"
+                  min="1"
+                  max="90"
+                />
+                <span class="error" id="durationErr"></span>
+              </div>
+            </div>
+
+            <div class="row">
+              <label>Take:</label>
+              <div class="field">
+                <div class="radio-group">
+                  <label
+                    ><input type="radio" name="take" value="Before meal" />
+                    Before meal</label
+                  >
+                  <label
+                    ><input type="radio" name="take" value="After meal" />
+                    After meal</label
+                  >
+                </div>
+                <span class="error" id="takeErr"></span>
+              </div>
+            </div>
+
+            <div class="row">
+              <label>Tests Advised:</label>
+              <div class="field">
+                <div class="check-group">
+                  <label
+                    ><input type="checkbox" name="tests" value="CBC" />
+                    CBC</label
+                  >
+                  <label
+                    ><input type="checkbox" name="tests" value="X-Ray" />
+                    X-Ray</label
+                  >
+                  <label
+                    ><input type="checkbox" name="tests" value="ECG" />
+                    ECG</label
+                  >
+                  <label
+                    ><input type="checkbox" name="tests" value="Blood Sugar" />
+                    Blood Sugar</label
+                  >
+                </div>
+                <span class="hint">Optional</span>
+              </div>
+            </div>
+          </fieldset>
+
+          <!-- Follow-up Fieldset -->
+          <fieldset>
+            <legend>Follow-up</legend>
+
+            <div class="row">
+              <label>Follow-up Needed:</label>
+              <div class="field">
+                <div class="radio-group">
+                  <label
+                    ><input type="radio" name="followup" value="Yes" />
+                    Yes</label
+                  >
+                  <label
+                    ><input type="radio" name="followup" value="No" /> No</label
+                  >
+                </div>
+                <span class="error" id="followupErr"></span>
+              </div>
+            </div>
+          </fieldset>
+
+          <p class="message" id="formMsg"></p>
+
+          <div class="buttons">
+            <button type="submit" class="btn primary">Save Prescription</button>
+            <button type="button" class="btn secondary" onclick="resetForm()">
+              Reset
+            </button>
+          </div>
+        </form>
+      </main>
+    </div>
+
+    <script src="js/prescription.js"></script>
+  </body>
+</html>

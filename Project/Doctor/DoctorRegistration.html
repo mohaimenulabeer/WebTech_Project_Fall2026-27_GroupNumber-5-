@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Doctor Registration</title>
+  <link rel="stylesheet" href="css/doctor.css" />
+</head>
+
+<body>
+  <div class="app-layout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="brand">
+        <h2>Doctor Portal</h2>
+        <p>Hospital Management System</p>
+      </div>
+      <nav class="sidebar-nav">
+        <a href="../index.html">Home</a>
+        <a href="DoctorLogin.html">Login</a>
+        <a href="DoctorRegistration.html" class="active">Registration</a>
+        <a href="DoctorPrescription.html">Prescription</a>
+        <a href="DoctorSchedule.html">Schedule</a>
+        <a href="DoctorLeave.html">Leave</a>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <h1>Doctor Registration Form</h1>
+
+      <form id="regForm" onsubmit="return validateRegistration(event);" novalidate>
+        <fieldset>
+          <legend>Personal Information</legend>
+
+          <div class="row">
+            <label for="fullName">Full Name:</label>
+            <div class="field">
+              <input type="text" id="fullName" placeholder="Enter full name" />
+              <span class="error" id="fullNameErr"></span>
+            </div>
+          </div>
+
+          <div class="row">
+            <label for="email">Email:</label>
+            <div class="field">
+              <input type="email" id="email" placeholder="Enter email" />
+              <span class="error" id="emailErr"></span>
+            </div>
+          </div>
+
+          <div class="row">
+            <label for="phone">Phone:</label>
+            <div class="field">
+              <input type="tel" id="phone" placeholder="e.g. 01712345678" maxlength="11" />
+              <span class="error" id="phoneErr"></span>
+            </div>
+          </div>
+
+          <div class="row">
+            <label>Gender:</label>
+            <div class="field">
+              <div class="radio-group">
+                <label><input type="radio" name="gender" value="Male" /> Male</label>
+                <label><input type="radio" name="gender" value="Female" />
+                  Female</label>
+                <label><input type="radio" name="gender" value="Other" />
+                  Other</label>
+              </div>
+              <span class="error" id="genderErr"></span>
+            </div>
+          </div>
+
+          <div class="row">
+            <label for="dob">Date of Birth:</label>
+            <div class="field">
+              <input type="date" id="dob" />
+              <span class="error" id="dobErr"></span>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Professional Information</legend>
+
+          <div class="row">
+            <label for="bmdc">BMDC Reg. No:</label>
+            <div class="field">
+              <input type="text" id="bmdc" placeholder="e.g. A-12345" autocomplete="off" />
+              <span class="error" id="bmdcErr"></span>
+            </div>
+          </div>
+
+          <div class="row">
+            <label for="specialization">Specialization:</label>
+            <div class="field">
+              <select id="specialization">
+                <option value="">-- Select Specialization --</option>
+                <option>Medicine</option>
+                <option>Cardiology</option>
+                <option>Neurology</option>
+                <option>Orthopedics</option>
+                <option>Pediatrics</option>
+                <option>Gynecology</option>
+                <option>Dermatology</option>
+                <option>ENT</option>
+              </select>
+              <span class="error" id="specializationErr"></span>
+            </div>
+          </div>
+
+          <div class="row">
+            <label for="experience">Experience (years):</label>
+            <div class="field">
+              <input type="number" id="experience" placeholder="0 - 50" min="0" max="50" />
+              <span class="error" id="experienceErr"></span>
+            </div>
+          </div>
+
+          <div class="row">
+            <label>Available Days:</label>
+            <div class="field">
+              <div class="check-group">
+                <label><input type="checkbox" name="days" value="Sat" /> Sat</label>
+                <label><input type="checkbox" name="days" value="Sun" /> Sun</label>
+                <label><input type="checkbox" name="days" value="Mon" /> Mon</label>
+                <label><input type="checkbox" name="days" value="Tue" /> Tue</label>
+                <label><input type="checkbox" name="days" value="Wed" /> Wed</label>
+                <label><input type="checkbox" name="days" value="Thu" /> Thu</label>
+              </div>
+              <span class="hint">Select at least 2 days</span>
+              <span class="error" id="daysErr"></span>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Account</legend>
+
+          <div class="row">
+            <label for="username">Username:</label>
+            <div class="field">
+              <input type="text" id="username" placeholder="4 - 15 characters" autocomplete="off" />
+              <span class="error" id="usernameErr"></span>
+            </div>
+          </div>
+
+          <div class="row">
+            <label for="password">Password:</label>
+            <div class="field">
+              <input type="password" id="password" placeholder="Enter password" />
+              <span class="hint">At least 8 characters with an uppercase letter, a lowercase
+                letter and a number</span>
+              <span class="error" id="passwordErr"></span>
+            </div>
+          </div>
+
+          <div class="row">
+            <label for="confirmPassword">Confirm Password:</label>
+            <div class="field">
+              <input type="password" id="confirmPassword" placeholder="Re-enter password" />
+              <span class="error" id="confirmPasswordErr"></span>
+            </div>
+          </div>
+        </fieldset>
+
+        <p class="message" id="formMsg"></p>
+
+        <div class="buttons">
+          <button type="submit" class="btn primary">Register</button>
+          <button type="button" class="btn secondary" onclick="resetForm()">
+            Reset
+          </button>
+        </div>
+      </form>
+    </main>
+  </div>
+
+  <script src="js/registration.js"></script>
+</body>
+
+</html>

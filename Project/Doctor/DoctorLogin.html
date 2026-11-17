@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Doctor Login</title>
+  <link rel="stylesheet" href="css/doctor.css" />
+</head>
+
+<body>
+  <div class="app-layout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="brand">
+        <h2>Doctor Portal</h2>
+        <p>Hospital Management System</p>
+      </div>
+      <nav class="sidebar-nav">
+        <a href="../index.html">Home</a>
+        <a href="DoctorLogin.html" class="active">Login</a>
+        <a href="DoctorRegistration.html">Registration</a>
+        <a href="DoctorPrescription.html">Prescription</a>
+        <a href="DoctorSchedule.html">Schedule</a>
+        <a href="DoctorLeave.html">Leave</a>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <h1>Doctor Login</h1>
+
+      <form id="loginForm" onsubmit="return validateLogin(event);" novalidate>
+        <fieldset>
+          <legend>Sign In</legend>
+
+          <div class="row">
+            <label for="bmdc">BMDC Reg. No:</label>
+            <div class="field">
+              <input type="text" id="bmdc" placeholder="e.g. A-12345" autocomplete="off" />
+              <span class="error" id="bmdcErr"></span>
+            </div>
+          </div>
+
+          <div class="row">
+            <label for="password">Password:</label>
+            <div class="field">
+              <input type="password" id="password" placeholder="Enter password" />
+              <label class="inline"><input type="checkbox" id="showPass" onclick="togglePassword()" />
+                Show password</label>
+              <span class="error" id="passErr"></span>
+            </div>
+          </div>
+
+          <div class="row">
+            <label for="chamber">Login To:</label>
+            <div class="field">
+              <select id="chamber">
+                <option value="">-- Select Chamber --</option>
+                <option value="main">Main Hospital</option>
+                <option value="city">City Chamber</option>
+                <option value="online">Online Chamber</option>
+              </select>
+              <span class="error" id="chamberErr"></span>
+            </div>
+          </div>
+        </fieldset>
+
+        <p class="note attempts-note" id="attemptInfo">You have 3 attempts</p>
+        <p class="message" id="formMsg"></p>
+
+        <div class="buttons">
+          <button type="submit" id="loginBtn" class="btn primary">Login</button>
+          <button type="button" class="btn secondary" onclick="resetForm()">
+            Reset
+          </button>
+        </div>
+
+        <p class="note">
+          New doctor? <a href="DoctorRegistration.html">Register here</a>
+        </p>
+      </form>
+    </main>
+  </div>
+
+  <script src="js/login.js"></script>
+</body>
+
+</html>
