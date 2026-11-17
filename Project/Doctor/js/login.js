@@ -55,9 +55,7 @@ function validateFields() {
   return ok;
 }
 
-// Checks credentials against doctors saved by the Registration page.
-// Registration should save: localStorage.setItem("doctors", JSON.stringify([{bmdc, password}, ...]))
-// Demo account is used only until at least one doctor is registered.
+
 function checkCredentials(bmdc, password) {
   let doctors = [];
   try {
@@ -84,7 +82,7 @@ function validateLogin(event) {
 
   if (checkCredentials(bmdc, pass)) {
     showMessage("Login successful. Redirecting...", "ok-msg");
-    // Change this to your dashboard page when it is ready
+    
     setTimeout(function () {
       window.location.href = "DoctorPrescription.html";
     }, 1000);
