@@ -13,7 +13,7 @@ function showMessage(text, type) {
   msg.className = "message " + (type || "");
 }
 
-// ---------- Individual field checks (return true if valid) ----------
+
 
 function checkFullName() {
   const el = $("fullName");
@@ -43,7 +43,7 @@ function checkPhone() {
   const el = $("phone");
   const v = el.value.trim();
   if (v === "") { setError(el, "phoneErr", "Phone number is required"); return false; }
-  // Bangladeshi mobile: 11 digits, starts with 013-019
+  
   if (!/^01[3-9]\d{8}$/.test(v)) {
     setError(el, "phoneErr", "Enter 11 digits starting with 013-019 (e.g. 01712345678)");
     return false;
@@ -123,7 +123,11 @@ function checkExperience() {
     setError(el, "experienceErr", "Enter a whole number between 0 and 50");
     return false;
   }
-  // Experience cannot be more than the years since age 22
+  
+
+
+
+
   if ($("dob").value !== "" && n > Math.max(getAge($("dob").value) - 22, 0)) {
     setError(el, "experienceErr", "Experience is too high for your age");
     return false;
@@ -181,7 +185,10 @@ function checkConfirmPassword() {
   return true;
 }
 
-// ---------- localStorage helpers ----------
+
+
+
+
 
 function getDoctors() {
   try {
@@ -203,7 +210,7 @@ function validateRegistration(event) {
   event.preventDefault();
   showMessage("", "");
 
-  // Run every check (no early exit) so all errors show at once
+  
   const results = [
     checkFullName(), checkEmail(), checkPhone(), checkGender(), checkDob(),
     checkBmdc(), checkSpecialization(), checkExperience(), checkDays(),
@@ -229,7 +236,7 @@ function validateRegistration(event) {
     experience: Number($("experience").value),
     days: days,
     username: $("username").value.trim(),
-    password: $("password").value   // demo only: never store plain passwords in a real system
+    password: $("password").value   
   };
 
   const doctors = getDoctors();
@@ -248,7 +255,7 @@ function resetForm() {
   showMessage("", "");
 }
 
-// ---------- Live validation when leaving a field ----------
+
 
 $("fullName").addEventListener("blur", checkFullName);
 $("email").addEventListener("blur", checkEmail);

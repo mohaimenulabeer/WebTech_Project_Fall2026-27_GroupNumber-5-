@@ -8,7 +8,6 @@
   </head>
   <body>
     <div class="app-layout">
-      <!-- Sidebar -->
       <aside class="sidebar">
         <div class="brand">
           <h2>Doctor Portal</h2>
@@ -24,7 +23,6 @@
         </nav>
       </aside>
 
-      <!-- Main Content -->
       <main class="main-content">
         <h1>Write Prescription</h1>
 
@@ -33,7 +31,6 @@
           onsubmit="return validatePrescription(event);"
           novalidate
         >
-          <!-- Patient Fieldset -->
           <fieldset>
             <legend>Patient</legend>
 
@@ -83,7 +80,6 @@
             </div>
           </fieldset>
 
-          <!-- Medicine Fieldset -->
           <fieldset>
             <legend>Medicine</legend>
 
@@ -131,8 +127,8 @@
                     Before meal</label
                   >
                   <label
-                    ><input type="radio" name="take" value="After meal" />
-                    After meal</label
+                    ><input type="radio" name="take" value="After meal" /> After
+                    meal</label
                   >
                 </div>
                 <span class="error" id="takeErr"></span>
@@ -165,7 +161,6 @@
             </div>
           </fieldset>
 
-          <!-- Follow-up Fieldset -->
           <fieldset>
             <legend>Follow-up</legend>
 
